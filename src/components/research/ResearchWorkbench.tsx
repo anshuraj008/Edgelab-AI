@@ -262,7 +262,7 @@ export const ResearchWorkbench: React.FC = () => {
                 </span>
               </div>
               <p className="text-[11px] text-cyprus-200 hidden sm:block">
-                Hypothesis &rarr; Transparent Clarification &rarr; Deterministic Backtest &rarr; Cautious Learn
+                From market question to transparent evidence.
               </p>
             </div>
           </div>
