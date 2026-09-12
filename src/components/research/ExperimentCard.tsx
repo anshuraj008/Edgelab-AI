@@ -148,7 +148,7 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
               />
             ) : (
               <p className="text-xs md:text-sm font-medium text-cyprus-950">
-                "{experiment.hypothesis}"
+                &ldquo;{experiment.hypothesis}&rdquo;
               </p>
             )}
           </div>
