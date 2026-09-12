@@ -9,36 +9,31 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        cyprus: {
-          50: "#e6f2f0",
-          100: "#cce5e1",
-          200: "#99cbc3",
-          300: "#66b1a5",
-          400: "#339787",
-          500: "#007d69",
-          600: "#006454",
-          700: "#004741", // Primary brand Cyprus
-          800: "#003632",
-          900: "#002421",
-          950: "#001211",
+        midnight: {
+          950: "#070B1A",
+          900: "#0A0F23", // App background
+          850: "#0D1328", // Sidebar / header / footer
+          800: "#11182E", // Card background
+          750: "#151D36", // Elevated surface / input
+          700: "#1C2646",
+          600: "#232D48", // Border
+          500: "#34405F", // Strong border
         },
-        sand: {
-          50: "#FAF8F5",
-          100: "#F5F2EA", // App Canvas warm sand
-          200: "#EAE5D9",
-          300: "#DDD6C5",
-          400: "#C8BEA8",
-          500: "#A89C83",
-          600: "#877B63",
-          700: "#665C47",
-          800: "#473F30",
-          900: "#2B261C",
+        violet: {
+          accent: "#7E3BED", // Primary accent
+          hover: "#8D55F5",  // Accent hover
+          soft: "#7E3BED1A", // Accent soft (10% opacity)
+          glow: "#7E3BED33", // Accent glow (20% opacity)
         },
-        provenance: {
-          user: "#1D4ED8", // Blue
-          assumption: "#B45309", // Amber
-          clarified: "#047857", // Emerald
-          derived: "#6D28D9", // Purple
+        slate: {
+          textPrimary: "#F8F9FC",   // Primary text
+          textSecondary: "#A7AFC3", // Secondary text
+          textMuted: "#737D96",     // Muted text
+        },
+        status: {
+          success: "#21D69B", // Mint / emerald
+          warning: "#F4B740", // Amber / gold
+          error: "#F05D68",   // Soft red / crimson
         },
       },
       fontFamily: {
@@ -46,9 +41,10 @@ const config: Config = {
         mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       boxShadow: {
-        card: "0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05)",
-        "card-hover": "0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05)",
-        "workbench": "0 10px 25px -5px rgba(0, 71, 65, 0.06), 0 8px 10px -6px rgba(0, 71, 65, 0.04)",
+        card: "0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.2)",
+        "card-hover": "0 4px 12px -2px rgba(0, 0, 0, 0.4), 0 2px 6px -2px rgba(126, 59, 237, 0.15)",
+        "violet-glow": "0 0 25px -5px rgba(126, 59, 237, 0.35)",
+        "violet-sm": "0 0 12px -2px rgba(126, 59, 237, 0.25)",
       },
     },
   },

@@ -16,26 +16,26 @@ export const ProvenanceBadge: React.FC<ProvenanceBadgeProps> = ({
   const config = {
     user: {
       label: userEdited ? "User Edited" : "User Stated",
-      bg: "bg-blue-50 border-blue-200 text-blue-800",
-      icon: <User className="w-3 h-3 text-blue-600 mr-1 inline" />,
+      bg: "bg-blue-950/60 border-blue-800/80 text-blue-300",
+      icon: <User className="w-3 h-3 text-blue-400 mr-1 inline" />,
       description: "Directly specified in the query by the user",
     },
     assumption: {
       label: "System Assumption",
-      bg: "bg-amber-50 border-amber-200 text-amber-900",
-      icon: <Lightbulb className="w-3 h-3 text-amber-600 mr-1 inline" />,
+      bg: "bg-amber-950/50 border-amber-700/60 text-amber-300",
+      icon: <Lightbulb className="w-3 h-3 text-amber-400 mr-1 inline" />,
       description: "Proposed default requiring user confirmation",
     },
     clarified: {
       label: "Clarified",
-      bg: "bg-emerald-50 border-emerald-200 text-emerald-800",
-      icon: <CheckCircle2 className="w-3 h-3 text-emerald-600 mr-1 inline" />,
+      bg: "bg-emerald-950/50 border-emerald-700/60 text-emerald-300",
+      icon: <CheckCircle2 className="w-3 h-3 text-emerald-400 mr-1 inline" />,
       description: "Confirmed via targeted clarification step",
     },
     derived: {
       label: "AI Inferred",
-      bg: "bg-purple-50 border-purple-200 text-purple-800",
-      icon: <Cpu className="w-3 h-3 text-purple-600 mr-1 inline" />,
+      bg: "bg-violet-950/60 border-violet-700/70 text-violet-300",
+      icon: <Cpu className="w-3 h-3 text-violet-400 mr-1 inline" />,
       description: "Inferred from trading context and standard conventions",
     },
   }[source];
@@ -43,7 +43,7 @@ export const ProvenanceBadge: React.FC<ProvenanceBadgeProps> = ({
   return (
     <span
       title={config.description}
-      className={`inline-flex items-center text-[11px] font-medium px-2 py-0.5 rounded-full border transition-colors ${config.bg} ${className}`}
+      className={`inline-flex items-center text-[11px] font-medium px-2.5 py-0.5 rounded-full border transition-colors ${config.bg} ${className}`}
     >
       {config.icon}
       <span>{config.label}</span>

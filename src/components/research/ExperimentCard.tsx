@@ -92,18 +92,18 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
   };
 
   return (
-    <div className="bg-white border border-sand-300 rounded-xl p-6 shadow-card transition-all">
+    <div className="bg-midnight-800 border border-midnight-600 rounded-xl p-6 md:p-8 shadow-card transition-all">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-sand-200 pb-4 mb-6 gap-3">
-        <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-cyprus-50 text-cyprus-700 border border-cyprus-200">
-            <Layers className="w-5 h-5" />
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-midnight-600 pb-5 mb-6 gap-3">
+        <div className="flex items-center gap-3.5">
+          <div className="p-2.5 rounded-lg bg-violet-accent/15 border border-violet-accent/30 text-violet-hover shadow-violet-sm">
+            <Layers className="w-5 h-5 text-violet-hover" />
           </div>
           <div>
-            <h3 className="text-base font-semibold text-slate-900">
+            <h3 className="text-base font-bold text-slate-textPrimary">
               Defined Research Experiment
             </h3>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-textSecondary">
               Review testable experiment definitions, parameter origins, and execution constraints.
             </p>
           </div>
@@ -114,7 +114,7 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
             <button
               type="button"
               onClick={handleSaveEdit}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-lg text-xs font-medium transition-colors shadow-xs"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-status-success/20 text-status-success border border-status-success/40 hover:bg-status-success/30 rounded-lg text-xs font-semibold transition-colors shadow-xs"
             >
               <Check className="w-3.5 h-3.5" />
               <span>Save & Apply Changes</span>
@@ -123,7 +123,7 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
             <button
               type="button"
               onClick={() => setIsEditing(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-sand-100 hover:bg-sand-200 text-slate-700 border border-sand-300 rounded-lg text-xs font-medium transition-colors"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-midnight-750 hover:bg-midnight-700 text-slate-textSecondary hover:text-slate-textPrimary border border-midnight-600 rounded-lg text-xs font-medium transition-colors"
             >
               <Edit2 className="w-3.5 h-3.5" />
               <span>Edit Parameters</span>
@@ -137,8 +137,8 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
         {/* Left 2 Cols: Experiment Parameters */}
         <div className="lg:col-span-2 space-y-4">
           {/* Hypothesis Banner */}
-          <div className="p-3.5 bg-cyprus-50/70 border border-cyprus-200 rounded-lg">
-            <span className="text-[10px] font-bold text-cyprus-800 uppercase tracking-wider block mb-1">
+          <div className="p-4 bg-midnight-750/90 border border-midnight-600 rounded-xl">
+            <span className="text-[10px] font-bold text-violet-hover uppercase tracking-wider block mb-1.5">
               Formal Research Hypothesis
             </span>
             {isEditing ? (
@@ -146,21 +146,21 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
                 value={hypothesisVal}
                 onChange={(e) => setHypothesisVal(e.target.value)}
                 rows={2}
-                className="w-full text-xs p-2 bg-white border border-sand-300 rounded focus:border-cyprus-700 outline-none"
+                className="w-full text-xs p-2.5 bg-midnight-800 text-slate-textPrimary border border-midnight-600 rounded-lg focus:border-violet-accent outline-none"
               />
             ) : (
-              <p className="text-xs md:text-sm font-medium text-cyprus-950">
+              <p className="text-xs md:text-sm font-medium text-slate-textPrimary">
                 &ldquo;{experiment.hypothesis}&rdquo;
               </p>
             )}
           </div>
 
           {/* Parameters Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             {/* Instrument */}
-            <div className="p-3 bg-sand-50/80 border border-sand-200 rounded-lg">
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-xs font-semibold text-slate-600">Instrument</span>
+            <div className="p-3.5 bg-midnight-750/90 border border-midnight-600 rounded-xl">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-semibold text-slate-textSecondary">Instrument</span>
                 <ProvenanceBadge
                   source={experiment.instrument.source}
                   userEdited={experiment.instrument.userEdited}
@@ -171,33 +171,33 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
                   type="text"
                   value={instrumentVal}
                   onChange={(e) => setInstrumentVal(e.target.value)}
-                  className="w-full text-xs p-1.5 bg-white border border-sand-300 rounded"
+                  className="w-full text-xs p-2 bg-midnight-800 text-slate-textPrimary border border-midnight-600 rounded-lg"
                 />
               ) : (
-                <span className="text-sm font-bold text-slate-900 font-mono">
+                <span className="text-sm font-bold text-slate-textPrimary font-mono">
                   {experiment.instrument.value}
                 </span>
               )}
             </div>
 
             {/* Timeframe */}
-            <div className="p-3 bg-sand-50/80 border border-sand-200 rounded-lg">
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-xs font-semibold text-slate-600">Timeframe</span>
+            <div className="p-3.5 bg-midnight-750/90 border border-midnight-600 rounded-xl">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-semibold text-slate-textSecondary">Timeframe</span>
                 <ProvenanceBadge
                   source={experiment.timeframe.source}
                 />
               </div>
-              <span className="text-sm font-bold text-slate-900 uppercase font-mono">
+              <span className="text-sm font-bold text-slate-textPrimary uppercase font-mono">
                 {experiment.timeframe.value}
               </span>
             </div>
 
             {/* Entry Trigger */}
-            <div className="p-3 bg-sand-50/80 border border-sand-200 rounded-lg">
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-xs font-semibold text-slate-600 flex items-center gap-1">
-                  <TrendingDown className="w-3.5 h-3.5 text-amber-600" />
+            <div className="p-3.5 bg-midnight-750/90 border border-midnight-600 rounded-xl">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-semibold text-slate-textSecondary flex items-center gap-1.5">
+                  <TrendingDown className="w-3.5 h-3.5 text-status-warning" />
                   <span>Entry Trigger Condition</span>
                 </span>
                 <ProvenanceBadge
@@ -206,24 +206,24 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
                 />
               </div>
               {isEditing ? (
-                <div className="flex items-center gap-1.5">
-                  <span className="text-xs text-slate-500">Decline:</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-slate-textSecondary">Decline:</span>
                   <input
                     type="number"
                     step="0.1"
                     min="0.1"
                     value={thresholdMagnitude}
                     onChange={(e) => setThresholdMagnitude(Math.abs(parseFloat(e.target.value) || 1.0))}
-                    className="w-20 text-xs p-1 bg-white border border-sand-300 rounded font-mono"
+                    className="w-20 text-xs p-1.5 bg-midnight-800 text-slate-textPrimary border border-midnight-600 rounded font-mono"
                   />
-                  <span className="text-xs text-slate-600 font-medium">% drop</span>
+                  <span className="text-xs text-slate-textSecondary font-medium">% drop</span>
                 </div>
               ) : (
                 <div>
-                  <span className="text-sm font-bold text-amber-900 font-mono">
+                  <span className="text-sm font-bold text-status-warning font-mono">
                     Daily Return &le; -{Math.abs(experiment.entryCondition.value.thresholdPct)}% ({Math.abs(experiment.entryCondition.value.thresholdPct)}% drop)
                   </span>
-                  <p className="text-[11px] text-slate-500 mt-0.5">
+                  <p className="text-[11px] text-slate-textMuted mt-1">
                     Execution at next session open to eliminate look-ahead bias.
                   </p>
                 </div>
@@ -231,10 +231,10 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
             </div>
 
             {/* Exit Condition & Holding Horizon */}
-            <div className="p-3 bg-sand-50/80 border border-sand-200 rounded-lg">
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-xs font-semibold text-slate-600 flex items-center gap-1">
-                  <Clock className="w-3.5 h-3.5 text-cyprus-700" />
+            <div className="p-3.5 bg-midnight-750/90 border border-midnight-600 rounded-xl">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-semibold text-slate-textSecondary flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-violet-hover" />
                   <span>Holding Period & Exit</span>
                 </span>
                 <ProvenanceBadge
@@ -243,23 +243,23 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
                 />
               </div>
               {isEditing ? (
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-2">
                   <input
                     type="number"
                     min="1"
                     max="252"
                     value={holdingDaysVal}
                     onChange={(e) => setHoldingDaysVal(parseInt(e.target.value, 10) || 5)}
-                    className="w-20 text-xs p-1 bg-white border border-sand-300 rounded font-mono"
+                    className="w-20 text-xs p-1.5 bg-midnight-800 text-slate-textPrimary border border-midnight-600 rounded font-mono"
                   />
-                  <span className="text-xs text-slate-500">trading sessions</span>
+                  <span className="text-xs text-slate-textSecondary">trading sessions</span>
                 </div>
               ) : (
                 <div>
-                  <span className="text-sm font-bold text-cyprus-900 font-mono">
+                  <span className="text-sm font-bold text-violet-hover font-mono">
                     {experiment.holdingPeriodDays.value} Trading Sessions
                   </span>
-                  <p className="text-[11px] text-slate-500 mt-0.5">
+                  <p className="text-[11px] text-slate-textMuted mt-1">
                     Fixed horizon time-exit without early discretionary intervention.
                   </p>
                 </div>
@@ -267,10 +267,10 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
             </div>
 
             {/* Test Period */}
-            <div className="p-3 bg-sand-50/80 border border-sand-200 rounded-lg">
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-xs font-semibold text-slate-600 flex items-center gap-1">
-                  <Calendar className="w-3.5 h-3.5 text-slate-500" />
+            <div className="p-3.5 bg-midnight-750/90 border border-midnight-600 rounded-xl">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-semibold text-slate-textSecondary flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-slate-textMuted" />
                   <span>Evaluation Date Window</span>
                 </span>
                 <ProvenanceBadge
@@ -279,32 +279,32 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
                 />
               </div>
               {isEditing ? (
-                <div className="grid grid-cols-2 gap-1">
+                <div className="grid grid-cols-2 gap-1.5">
                   <input
                     type="date"
                     value={startDateVal}
                     onChange={(e) => setStartDateVal(e.target.value)}
-                    className="text-[11px] p-1 bg-white border border-sand-300 rounded"
+                    className="text-[11px] p-1.5 bg-midnight-800 text-slate-textPrimary border border-midnight-600 rounded"
                   />
                   <input
                     type="date"
                     value={endDateVal}
                     onChange={(e) => setEndDateVal(e.target.value)}
-                    className="text-[11px] p-1 bg-white border border-sand-300 rounded"
+                    className="text-[11px] p-1.5 bg-midnight-800 text-slate-textPrimary border border-midnight-600 rounded"
                   />
                 </div>
               ) : (
-                <span className="text-xs font-bold text-slate-800 font-mono">
+                <span className="text-xs font-bold text-slate-textPrimary font-mono">
                   {experiment.testPeriod.value.start} &rarr; {experiment.testPeriod.value.end}
                 </span>
               )}
             </div>
 
             {/* Costs & Slippage */}
-            <div className="p-3 bg-sand-50/80 border border-sand-200 rounded-lg">
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-xs font-semibold text-slate-600 flex items-center gap-1">
-                  <DollarSign className="w-3.5 h-3.5 text-emerald-600" />
+            <div className="p-3.5 bg-midnight-750/90 border border-midnight-600 rounded-xl">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-semibold text-slate-textSecondary flex items-center gap-1.5">
+                  <DollarSign className="w-3.5 h-3.5 text-status-success" />
                   <span>Transaction Costs & Slippage</span>
                 </span>
                 <ProvenanceBadge
@@ -313,30 +313,30 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
                 />
               </div>
               {isEditing ? (
-                <div className="grid grid-cols-2 gap-1 text-[11px]">
+                <div className="grid grid-cols-2 gap-2 text-[11px]">
                   <div>
-                    <span className="text-slate-500">Fees:</span>
+                    <span className="text-slate-textSecondary">Fees:</span>
                     <input
                       type="number"
                       value={txBpsVal}
                       onChange={(e) => setTxBpsVal(parseFloat(e.target.value) || 0)}
-                      className="w-16 p-1 ml-1 bg-white border border-sand-300 rounded font-mono"
+                      className="w-16 p-1 ml-1 bg-midnight-800 text-slate-textPrimary border border-midnight-600 rounded font-mono"
                     />{" "}
                     bps
                   </div>
                   <div>
-                    <span className="text-slate-500">Slip:</span>
+                    <span className="text-slate-textSecondary">Slip:</span>
                     <input
                       type="number"
                       value={slippageBpsVal}
                       onChange={(e) => setSlippageBpsVal(parseFloat(e.target.value) || 0)}
-                      className="w-16 p-1 ml-1 bg-white border border-sand-300 rounded font-mono"
+                      className="w-16 p-1 ml-1 bg-midnight-800 text-slate-textPrimary border border-midnight-600 rounded font-mono"
                     />{" "}
                     bps
                   </div>
                 </div>
               ) : (
-                <span className="text-xs font-bold text-emerald-900 font-mono">
+                <span className="text-xs font-bold text-status-success font-mono">
                   {experiment.costs.value.transactionBps} bps fees +{" "}
                   {experiment.costs.value.slippageBps} bps slippage (
                   {(
@@ -352,47 +352,47 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
         </div>
 
         {/* Right Col: Why This Matters & Provenance Guide */}
-        <div className="bg-sand-50/90 border border-sand-200 rounded-lg p-4 space-y-4">
-          <div className="flex items-center gap-2 border-b border-sand-200 pb-2">
-            <Info className="w-4 h-4 text-cyprus-700" />
-            <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+        <div className="bg-midnight-750/90 border border-midnight-600 rounded-xl p-5 space-y-4">
+          <div className="flex items-center gap-2 border-b border-midnight-600 pb-3">
+            <Info className="w-4 h-4 text-violet-hover" />
+            <h4 className="text-[11px] font-bold text-slate-textMuted uppercase tracking-wider">
               Parameter Provenance & Integrity
             </h4>
           </div>
 
-          <div className="space-y-2.5 text-xs text-slate-600">
-            <div className="flex items-start gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-blue-600 shrink-0 mt-1" />
+          <div className="space-y-3 text-xs text-slate-textSecondary">
+            <div className="flex items-start gap-2.5">
+              <span className="w-2 h-2 rounded-full bg-blue-400 shrink-0 mt-1.5" />
               <div>
-                <strong className="text-slate-800">User Stated:</strong> Values extracted verbatim from your prompt.
+                <strong className="text-slate-textPrimary">User Stated:</strong> Values extracted verbatim from your prompt.
               </div>
             </div>
-            <div className="flex items-start gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-600 shrink-0 mt-1" />
+            <div className="flex items-start gap-2.5">
+              <span className="w-2 h-2 rounded-full bg-status-warning shrink-0 mt-1.5" />
               <div>
-                <strong className="text-slate-800">System Assumption:</strong> Proposed default requiring confirmation.
+                <strong className="text-slate-textPrimary">System Assumption:</strong> Proposed default requiring confirmation.
               </div>
             </div>
-            <div className="flex items-start gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 shrink-0 mt-1" />
+            <div className="flex items-start gap-2.5">
+              <span className="w-2 h-2 rounded-full bg-status-success shrink-0 mt-1.5" />
               <div>
-                <strong className="text-slate-800">Clarified:</strong> Disambiguated through the clarification step.
+                <strong className="text-slate-textPrimary">Clarified:</strong> Disambiguated through the clarification step.
               </div>
             </div>
-            <div className="flex items-start gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-purple-600 shrink-0 mt-1" />
+            <div className="flex items-start gap-2.5">
+              <span className="w-2 h-2 rounded-full bg-violet-hover shrink-0 mt-1.5" />
               <div>
-                <strong className="text-slate-800">AI Inferred:</strong> Inferred from trading context and standard conventions.
+                <strong className="text-slate-textPrimary">AI Inferred:</strong> Inferred from trading context and standard conventions.
               </div>
             </div>
           </div>
 
-          <div className="pt-3 border-t border-sand-200">
-            <div className="flex items-center gap-1.5 text-xs text-amber-900 font-semibold mb-1">
-              <ShieldAlert className="w-3.5 h-3.5 text-amber-600" />
+          <div className="pt-4 border-t border-midnight-600">
+            <div className="flex items-center gap-1.5 text-xs text-status-warning font-semibold mb-1">
+              <ShieldAlert className="w-3.5 h-3.5 text-status-warning" />
               <span>Auditable Research Guarantee</span>
             </div>
-            <p className="text-[11px] text-slate-500">
+            <p className="text-[11px] text-slate-textMuted">
               Deterministic calculations are executed in TypeScript using the bundled calibrated sample dataset. Zero LLM hallucinations in metrics.
             </p>
           </div>
@@ -400,17 +400,17 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
       </div>
 
       {/* Action Footer */}
-      <div className="flex items-center justify-between pt-6 mt-6 border-t border-sand-200">
-        <span className="text-xs text-slate-500">
+      <div className="flex items-center justify-between pt-6 mt-6 border-t border-midnight-600">
+        <span className="text-xs text-slate-textMuted">
           Status:{" "}
-          <span className="font-semibold text-emerald-700 uppercase tracking-wider">
+          <span className="font-semibold text-status-success uppercase tracking-wider">
             Ready For Sample Backtesting
           </span>
         </span>
         <button
           type="button"
           onClick={onProceedToTest}
-          className="flex items-center gap-2 px-6 py-2.5 bg-cyprus-700 hover:bg-cyprus-800 text-white rounded-lg text-xs md:text-sm font-medium shadow-sm transition-all"
+          className="flex items-center gap-2 px-6 py-2.5 bg-violet-accent hover:bg-violet-hover text-white rounded-lg text-xs md:text-sm font-semibold shadow-violet-sm transition-all"
         >
           <PlayCircle className="w-4 h-4" />
           <span>Execute Deterministic Test</span>

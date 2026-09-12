@@ -17,7 +17,7 @@ import { ResultSummary } from "./ResultSummary";
 import { EvidenceVsConclusion } from "./EvidenceVsConclusion";
 import { NextQuestions } from "./NextQuestions";
 import { mergeClarificationAnswers } from "@/lib/ai/clarification-merger";
-import { AlertCircle, History, Sparkles, BookOpen } from "lucide-react";
+import { AlertCircle, History, Sparkles } from "lucide-react";
 
 const STAGE_ORDER: Stage[] = ["ask", "clarify", "define", "test", "learn"];
 
@@ -246,22 +246,22 @@ export const ResearchWorkbench: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-sand-100 flex flex-col">
+    <div className="min-h-screen bg-midnight-900 text-slate-textPrimary flex flex-col selection:bg-violet-accent selection:text-white">
       {/* Top Header */}
-      <header className="bg-cyprus-700 text-white border-b border-cyprus-800 shadow-sm sticky top-0 z-30">
+      <header className="bg-midnight-850/90 backdrop-blur-md text-white border-b border-midnight-600 shadow-sm sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-cyprus-800 flex items-center justify-center border border-cyprus-600 shadow-xs">
-              <Sparkles className="w-4 h-4 text-cyprus-200" />
+          <div className="flex items-center gap-3.5">
+            <div className="w-8 h-8 rounded-lg bg-violet-accent/15 flex items-center justify-center border border-violet-accent/30 shadow-violet-sm">
+              <Sparkles className="w-4 h-4 text-violet-hover" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-base font-bold tracking-tight">EdgeLab AI</h1>
-                <span className="text-[10px] bg-cyprus-800/80 text-cyprus-200 px-2 py-0.5 rounded border border-cyprus-600 font-mono">
+                <h1 className="text-base font-bold tracking-tight text-white">EdgeLab AI</h1>
+                <span className="text-[10px] bg-violet-soft text-violet-hover px-2 py-0.5 rounded border border-violet-accent/30 font-mono">
                   Research Workbench
                 </span>
               </div>
-              <p className="text-[11px] text-cyprus-200 hidden sm:block">
+              <p className="text-[11px] text-slate-textSecondary hidden sm:block">
                 From market question to transparent evidence.
               </p>
             </div>
@@ -269,15 +269,15 @@ export const ResearchWorkbench: React.FC = () => {
 
           <div className="flex items-center gap-3">
             {state.history.length > 0 && (
-              <div className="hidden md:flex items-center gap-1.5 text-xs text-cyprus-200">
-                <History className="w-3.5 h-3.5" />
+              <div className="hidden md:flex items-center gap-1.5 text-xs text-slate-textSecondary">
+                <History className="w-3.5 h-3.5 text-slate-textMuted" />
                 <span>{state.history.length} session{state.history.length > 1 ? "s" : ""}</span>
               </div>
             )}
             <button
               type="button"
               onClick={() => dispatch({ type: "RESET_WORKFLOW" })}
-              className="text-xs bg-cyprus-800 hover:bg-cyprus-900 text-cyprus-100 px-3 py-1.5 rounded-md border border-cyprus-600 transition-colors"
+              className="text-xs bg-midnight-750 hover:bg-midnight-700 text-slate-textPrimary px-3.5 py-1.5 rounded-lg border border-midnight-600 transition-colors shadow-xs"
             >
               New Query
             </button>
@@ -286,9 +286,9 @@ export const ResearchWorkbench: React.FC = () => {
       </header>
 
       {/* Main Content Area */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full space-y-6">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 flex-1 w-full space-y-6">
         {/* Stage Progress Stepper */}
-        <div className="bg-white border border-sand-300 rounded-xl p-4 shadow-xs">
+        <div className="bg-midnight-800 border border-midnight-600 rounded-xl p-4 md:p-5 shadow-card">
           <StageStepper
             currentStage={state.stage}
             onSelectStage={(st) => dispatch({ type: "SET_STAGE", payload: st })}
@@ -300,16 +300,16 @@ export const ResearchWorkbench: React.FC = () => {
         {state.errorMessage && (
           <div
             role="alert"
-            className="flex items-center justify-between p-4 bg-brick-50 border border-brick-200 text-brick-900 rounded-xl text-xs md:text-sm"
+            className="flex items-center justify-between p-4 bg-status-error/15 border border-status-error/30 text-status-error rounded-xl text-xs md:text-sm"
           >
-            <div className="flex items-center gap-2">
-              <AlertCircle className="w-4 h-4 text-brick-600 shrink-0" />
+            <div className="flex items-center gap-2.5">
+              <AlertCircle className="w-4 h-4 text-status-error shrink-0" />
               <span>{state.errorMessage}</span>
             </div>
             <button
               type="button"
               onClick={() => dispatch({ type: "CLEAR_ERROR" })}
-              className="text-xs font-semibold text-brick-700 hover:text-brick-900 underline ml-4"
+              className="text-xs font-semibold text-status-error hover:underline ml-4"
             >
               Dismiss
             </button>
@@ -377,15 +377,15 @@ export const ResearchWorkbench: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-sand-300 bg-white/70 py-4 mt-auto">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+      <footer className="border-t border-midnight-600 bg-midnight-850/80 py-5 mt-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-textMuted">
           <div>
-            <strong>EdgeLab AI Selection Assignment</strong> — Designed for Transparent Ambiguity & Deterministic Research.
+            <strong className="text-slate-textSecondary">EdgeLab AI Selection Assignment</strong> — Transparent Ambiguity & Deterministic Research.
           </div>
-          <div className="flex items-center gap-4 text-[11px]">
+          <div className="flex items-center gap-3 text-[11px] text-slate-textMuted font-mono">
             <span>Next.js App Router</span>
             <span>&bull;</span>
-            <span>Google Gemini API</span>
+            <span>Google Gemini</span>
             <span>&bull;</span>
             <span>Neon PostgreSQL</span>
             <span>&bull;</span>
