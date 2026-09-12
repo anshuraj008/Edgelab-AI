@@ -1,6 +1,7 @@
 /**
- * NIFTY 50 Benchmark Historical Daily Dataset
- * Contains daily OHLCV price series for deterministic backtesting.
+ * Bundled Calibrated Sample Dataset (2015–2024)
+ * Contains calibrated daily OHLCV price series for deterministic prototype testing.
+ * Note: Explicitly labeled as calibrated sample data for prototype demonstration.
  */
 
 export interface DailyCandle {
@@ -42,31 +43,31 @@ function generateCalibratedNiftySeries(): DailyCandle[] {
       let drift = 0.00045; // Average annualized ~12% drift
       let vol = 0.0095; // Base daily volatility ~0.95%
 
-      // Specific historical volatility shocks
+      // Specific historical volatility regimes
       if (year === 2015 && month >= 8 && month <= 9) {
         // China devaluation shock
-        drift = -0.0015;
-        vol = 0.015;
+        drift = -0.0012;
+        vol = 0.013;
       } else if (year === 2016 && month === 11) {
         // Demonetization dip
-        drift = -0.0018;
-        vol = 0.016;
+        drift = -0.0014;
+        vol = 0.014;
       } else if (year === 2020 && month === 3) {
-        // Covid crash
-        drift = -0.012;
-        vol = 0.038;
+        // Covid crash (calibrated to index circuit breaker dynamics)
+        drift = -0.008;
+        vol = 0.024;
       } else if (year === 2020 && month >= 4 && month <= 12) {
         // Covid recovery rally
-        drift = 0.003;
-        vol = 0.018;
+        drift = 0.0025;
+        vol = 0.015;
       } else if (year === 2022 && month <= 6) {
         // Global inflation / Ukraine shock
-        drift = -0.0008;
-        vol = 0.013;
+        drift = -0.0006;
+        vol = 0.012;
       } else if (year === 2023 || year === 2024) {
         // Sustained rally
-        drift = 0.0007;
-        vol = 0.0085;
+        drift = 0.00065;
+        vol = 0.008;
       }
 
       // Box-Muller normal distribution from deterministic seed
@@ -75,10 +76,10 @@ function generateCalibratedNiftySeries(): DailyCandle[] {
       const z = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
 
       const dailyReturn = drift + vol * z;
-      const openPrice = prevClose * (1 + (pseudoRandom() - 0.5) * 0.004);
+      const openPrice = prevClose * (1 + (pseudoRandom() - 0.5) * 0.003);
       const closePrice = Math.round(prevClose * (1 + dailyReturn) * 100) / 100;
-      const highPrice = Math.round(Math.max(openPrice, closePrice) * (1 + pseudoRandom() * 0.006) * 100) / 100;
-      const lowPrice = Math.round(Math.min(openPrice, closePrice) * (1 - pseudoRandom() * 0.006) * 100) / 100;
+      const highPrice = Math.round(Math.max(openPrice, closePrice) * (1 + pseudoRandom() * 0.005) * 100) / 100;
+      const lowPrice = Math.round(Math.min(openPrice, closePrice) * (1 - pseudoRandom() * 0.005) * 100) / 100;
       const volume = Math.floor(150000000 + pseudoRandom() * 200000000);
 
       const returnPct = Math.round(((closePrice - prevClose) / prevClose) * 10000) / 100;
@@ -102,14 +103,14 @@ function generateCalibratedNiftySeries(): DailyCandle[] {
   return candles;
 }
 
-export const NIFTY_HISTORICAL_SERIES: DailyCandle[] = generateCalibratedNiftySeries();
+export const NIFTY_CALIBRATED_SAMPLE_SERIES: DailyCandle[] = generateCalibratedNiftySeries();
 
 export function getPriceSeries(
   instrument: string = "NIFTY",
   startDate?: string,
   endDate?: string
 ): DailyCandle[] {
-  let series = NIFTY_HISTORICAL_SERIES;
+  let series = NIFTY_CALIBRATED_SAMPLE_SERIES;
 
   if (startDate) {
     series = series.filter((c) => c.date >= startDate);

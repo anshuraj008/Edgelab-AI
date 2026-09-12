@@ -6,7 +6,6 @@ import {
   Edit2,
   Check,
   PlayCircle,
-  HelpCircle,
   ShieldAlert,
   Info,
   DollarSign,
@@ -28,9 +27,11 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
 }) => {
   const [isEditing, setIsEditing] = useState(false);
 
-  // Local draft state for editing
+  // Local draft state for editing (store drop threshold as positive magnitude)
   const [instrumentVal, setInstrumentVal] = useState(experiment.instrument.value);
-  const [thresholdVal, setThresholdVal] = useState(experiment.entryCondition.value.thresholdPct);
+  const [thresholdMagnitude, setThresholdMagnitude] = useState(
+    Math.abs(experiment.entryCondition.value.thresholdPct)
+  );
   const [holdingDaysVal, setHoldingDaysVal] = useState(experiment.holdingPeriodDays.value);
   const [startDateVal, setStartDateVal] = useState(experiment.testPeriod.value.start);
   const [endDateVal, setEndDateVal] = useState(experiment.testPeriod.value.end);
@@ -39,6 +40,7 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
   const [hypothesisVal, setHypothesisVal] = useState(experiment.hypothesis);
 
   const handleSaveEdit = () => {
+    const finalThreshold = -Math.abs(thresholdMagnitude || 1.0);
     onUpdateExperiment({
       instrument: {
         ...experiment.instrument,
@@ -50,8 +52,8 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
         ...experiment.entryCondition,
         value: {
           ...experiment.entryCondition.value,
-          thresholdPct: thresholdVal,
-          description: `Daily close falls by ${Math.abs(thresholdVal)}% or more`,
+          thresholdPct: finalThreshold,
+          description: `Daily close falls by ${Math.abs(finalThreshold)}% or more`,
         },
         source: "user" as ProvenanceSource,
         userEdited: true,
@@ -161,7 +163,6 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
                 <span className="text-xs font-semibold text-slate-600">Instrument</span>
                 <ProvenanceBadge
                   source={experiment.instrument.source}
-                  confidence={experiment.instrument.confidence}
                   userEdited={experiment.instrument.userEdited}
                 />
               </div>
@@ -185,7 +186,6 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
                 <span className="text-xs font-semibold text-slate-600">Timeframe</span>
                 <ProvenanceBadge
                   source={experiment.timeframe.source}
-                  confidence={experiment.timeframe.confidence}
                 />
               </div>
               <span className="text-sm font-bold text-slate-900 uppercase font-mono">
@@ -202,29 +202,29 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
                 </span>
                 <ProvenanceBadge
                   source={experiment.entryCondition.source}
-                  confidence={experiment.entryCondition.confidence}
                   userEdited={experiment.entryCondition.userEdited}
                 />
               </div>
               {isEditing ? (
-                <div className="flex items-center gap-1">
-                  <span className="text-xs text-slate-500">Threshold:</span>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xs text-slate-500">Decline:</span>
                   <input
                     type="number"
                     step="0.1"
-                    value={thresholdVal}
-                    onChange={(e) => setThresholdVal(parseFloat(e.target.value) || -1.0)}
+                    min="0.1"
+                    value={thresholdMagnitude}
+                    onChange={(e) => setThresholdMagnitude(Math.abs(parseFloat(e.target.value) || 1.0))}
                     className="w-20 text-xs p-1 bg-white border border-sand-300 rounded font-mono"
                   />
-                  <span className="text-xs">%</span>
+                  <span className="text-xs text-slate-600 font-medium">% drop</span>
                 </div>
               ) : (
                 <div>
                   <span className="text-sm font-bold text-amber-900 font-mono">
-                    Daily Return &le; {experiment.entryCondition.value.thresholdPct}%
+                    Daily Return &le; -{Math.abs(experiment.entryCondition.value.thresholdPct)}% ({Math.abs(experiment.entryCondition.value.thresholdPct)}% drop)
                   </span>
                   <p className="text-[11px] text-slate-500 mt-0.5">
-                    Execution at next session open to prevent look-ahead bias.
+                    Execution at next session open to eliminate look-ahead bias.
                   </p>
                 </div>
               )}
@@ -239,7 +239,6 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
                 </span>
                 <ProvenanceBadge
                   source={experiment.holdingPeriodDays.source}
-                  confidence={experiment.holdingPeriodDays.confidence}
                   userEdited={experiment.holdingPeriodDays.userEdited}
                 />
               </div>
@@ -276,7 +275,6 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
                 </span>
                 <ProvenanceBadge
                   source={experiment.testPeriod.source}
-                  confidence={experiment.testPeriod.confidence}
                   userEdited={experiment.testPeriod.userEdited}
                 />
               </div>
@@ -311,7 +309,6 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
                 </span>
                 <ProvenanceBadge
                   source={experiment.costs.source}
-                  confidence={experiment.costs.confidence}
                   userEdited={experiment.costs.userEdited}
                 />
               </div>
@@ -373,7 +370,7 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
             <div className="flex items-start gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-amber-600 shrink-0 mt-1" />
               <div>
-                <strong className="text-slate-800">Assumption:</strong> System proposed defaults requiring verification.
+                <strong className="text-slate-800">System Assumption:</strong> Proposed default requiring confirmation.
               </div>
             </div>
             <div className="flex items-start gap-2">
@@ -385,7 +382,7 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
             <div className="flex items-start gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-purple-600 shrink-0 mt-1" />
               <div>
-                <strong className="text-slate-800">Derived:</strong> Inferred from institutional quant conventions.
+                <strong className="text-slate-800">AI Inferred:</strong> Inferred from trading context and standard conventions.
               </div>
             </div>
           </div>
@@ -396,7 +393,7 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
               <span>Auditable Research Guarantee</span>
             </div>
             <p className="text-[11px] text-slate-500">
-              Deterministic calculations will be executed in TypeScript on authentic daily candles. No LLM hallucinations in metrics.
+              Deterministic calculations are executed in TypeScript using the bundled calibrated sample dataset. Zero LLM hallucinations in metrics.
             </p>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Experiment } from "@/types/research";
-import { PlayCircle, Database, CheckCircle2, ShieldCheck, Loader2, Sliders } from "lucide-react";
+import { PlayCircle, CheckCircle2, ShieldCheck, Loader2, Sliders } from "lucide-react";
 
 interface TestPanelProps {
   experiment: Experiment;
@@ -29,7 +29,7 @@ export const TestPanel: React.FC<TestPanelProps> = ({
               Deterministic Sample Backtest Engine
             </h3>
             <p className="text-xs text-slate-500">
-              Run quantitative backtest across historical price series with transparent execution rules and explicit costs.
+              Run quantitative backtest across calibrated sample price series with transparent execution rules and explicit costs.
             </p>
           </div>
         </div>
@@ -58,17 +58,17 @@ export const TestPanel: React.FC<TestPanelProps> = ({
             >
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs font-bold text-slate-900">
-                  NIFTY 50 Benchmark Daily
+                  Bundled Calibrated Sample Dataset
                 </span>
                 {datasetSource === "nifty-historical" && (
                   <CheckCircle2 className="w-4 h-4 text-cyprus-700" />
                 )}
               </div>
               <p className="text-[11px] text-slate-600">
-                Calibrated daily OHLCV series spanning 2015-2024 (~2,450 sessions) across bull, bear, and Covid regimes.
+                Calibrated daily OHLCV series spanning 2015–2024 (~2,450 sessions) across bull, bear, and recovery market regimes.
               </p>
               <span className="mt-2 inline-block text-[10px] bg-cyprus-100 text-cyprus-800 px-2 py-0.5 rounded font-mono">
-                Historical Series
+                Calibrated Sample (Prototype)
               </span>
             </button>
 
@@ -83,7 +83,7 @@ export const TestPanel: React.FC<TestPanelProps> = ({
             >
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs font-bold text-slate-900">
-                  High-Volatility Regime Series
+                  Stress Simulation Series
                 </span>
                 {datasetSource === "simulated-market" && (
                   <CheckCircle2 className="w-4 h-4 text-cyprus-700" />

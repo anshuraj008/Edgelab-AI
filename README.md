@@ -33,17 +33,18 @@ Browser / Client (Next.js App Router UI)
   │
   ├──> POST /api/research/parse ──> Rate Limit ──> Gemini API (Server Key) ──> Zod Validate ──> Structured Draft
   │
-  ├──> POST /api/research/test  ──> Rate Limit ──> Deterministic Engine   ──> Historical NIFTY Series ──> Auditable Metrics
+  ├──> POST /api/research/test  ──> Rate Limit ──> Deterministic Engine   ──> Calibrated Sample Dataset ──> Auditable Metrics
   │
   └──> Neon PostgreSQL / Drizzle ORM (Optional Persistent State with Resilient Fallback)
 ```
 
 ### Core Architecture Tenets:
 1. **Meaningful AI, Not a Chat Wrapper**: The LLM structures ambiguous language; deterministic TypeScript code computes all calculations and statistics.
-2. **Provenance Transparency**: Every parameter is tagged as `User Stated`, `System Assumption`, `Clarified`, or `Derived Context`.
-3. **No Look-Ahead Bias**: Entry signals execute at next-session Open.
+2. **Provenance Transparency**: Every parameter is tagged as `User Stated`, `System Assumption`, `Clarified`, or `AI Inferred`.
+3. **No Look-Ahead Bias**: Entry signals execute at next-session Open (Day $T+1$ Open).
 4. **Frictional Realism**: Net returns deduct 10 bps transaction fees + 5 bps slippage (15 bps total) by default.
 5. **Anti-Re-Render State Machine**: Managed through a single `useReducer` in `ResearchWorkbench.tsx`.
+6. **Honest Dataset Labeling**: Uses a bundled calibrated sample dataset (2015–2024, ~2,450 sessions) for prototype demonstration.
 
 ---
 
@@ -71,7 +72,7 @@ interface Experiment {
   timeframe: ProvenanceItem<"daily" | "hourly">;
   entryCondition: ProvenanceItem<{
     type: string;
-    thresholdPct: number; // e.g. -1.0%
+    thresholdPct: number; // e.g. -1.0% (1.0% drop)
     description: string;
   }>;
   exitCondition: ProvenanceItem<{
@@ -110,7 +111,7 @@ interface Experiment {
 ### Quick Start
 ```bash
 # 1. Clone repository
-git clone <repo-url>
+git clone https://github.com/anshuraj008/Edgelab-AI.git
 cd edgelab-ai
 
 # 2. Install dependencies
@@ -135,6 +136,9 @@ npm test
 # Run TypeScript typecheck
 npm run typecheck
 
+# Run linter
+npm run lint
+
 # Build production bundle
 npm run build
 ```
@@ -145,8 +149,8 @@ npm run build
 
 1. **0:00 - 0:30 (Problem & Vision):** Show the initial Ask stage. Explain that qualitative questions like "Does buying NIFTY after a sharp fall work?" are ambiguous and un-testable without structured parameters.
 2. **0:30 - 1:00 (Clarify):** Click prompt; show the Clarification screen. Highlight that the AI detected missing drop threshold, holding duration, and test period instead of silently inventing them.
-3. **1:00 - 1:40 (Define & Provenance):** Review the 2-column defined experiment. Show the interactive provenance badges (`User Stated`, `Assumption`, `Clarified`, `Derived`) and edit a parameter.
-4. **1:40 - 2:20 (Deterministic Test):** Execute the backtest on the calibrated 10-year NIFTY series. Walk through the metric cards (win rate, mean return, unconditional baseline, and conditional edge) and return distribution chart.
+3. **1:00 - 1:40 (Define & Provenance):** Review the 2-column defined experiment. Show the interactive provenance badges (`User Stated`, `System Assumption`, `Clarified`, `AI Inferred`) and edit a parameter.
+4. **1:40 - 2:20 (Deterministic Test):** Execute the backtest on the bundled calibrated sample dataset. Walk through the metric cards (win rate, mean return, unconditional baseline, and conditional edge) and return distribution chart.
 5. **2:20 - 3:00 (Learn & Critical Thinking):** Show the clear split between factual evidence and cautious conclusions. Review the acknowledged research risks (look-ahead bias, slippage, clustering, multiple comparisons) and click a next-question hypothesis to iterate.
 
 ---

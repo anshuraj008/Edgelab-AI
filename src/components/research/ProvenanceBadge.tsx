@@ -4,14 +4,12 @@ import { User, Lightbulb, CheckCircle2, Cpu } from "lucide-react";
 
 interface ProvenanceBadgeProps {
   source: ProvenanceSource;
-  confidence?: number;
   userEdited?: boolean;
   className?: string;
 }
 
 export const ProvenanceBadge: React.FC<ProvenanceBadgeProps> = ({
   source,
-  confidence,
   userEdited,
   className = "",
 }) => {
@@ -35,10 +33,10 @@ export const ProvenanceBadge: React.FC<ProvenanceBadgeProps> = ({
       description: "Confirmed via targeted clarification step",
     },
     derived: {
-      label: "Derived Context",
+      label: "AI Inferred",
       bg: "bg-purple-50 border-purple-200 text-purple-800",
       icon: <Cpu className="w-3 h-3 text-purple-600 mr-1 inline" />,
-      description: "Inferred from market convention & semantics",
+      description: "Inferred from trading context and standard conventions",
     },
   }[source];
 
@@ -49,9 +47,6 @@ export const ProvenanceBadge: React.FC<ProvenanceBadgeProps> = ({
     >
       {config.icon}
       <span>{config.label}</span>
-      {confidence !== undefined && confidence < 1.0 && (
-        <span className="ml-1 opacity-75 text-[10px]">({Math.round(confidence * 100)}%)</span>
-      )}
     </span>
   );
 };

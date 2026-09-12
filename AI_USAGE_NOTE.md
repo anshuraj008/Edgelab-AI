@@ -11,18 +11,19 @@
 ---
 
 ## 2. What AI Was Used For
-1. **Prompt Template Engineering:** Refining system prompts to strictly output JSON schema without markdown wrapping or conversational filler.
-2. **Schema & Edge-Case Exploration:** Exploring various financial parameter schemas to handle daily vs. hourly intervals and time-based vs. indicator-based exits.
-3. **Copy Review & Polish:** Ensuring all UI copy adheres to institutional quantitative finance terminology (e.g., *conditional edge over baseline*, *unconditional drift*, *round-trip friction*).
+1. **Prompt Template Engineering:** Refining system prompts to strictly output JSON schema without conversational filler.
+2. **Schema & Edge-Case Exploration:** Exploring parameter schemas to handle daily vs. hourly intervals and time-based exits.
+3. **Copy Review & Polish:** Ensuring all UI copy adheres to clear, institutional quantitative research terminology (*conditional edge over baseline*, *unconditional drift*, *round-trip friction*).
 
 ---
 
 ## 3. Decisions Made Personally (Human Engineering Ownership)
 * **Architecture & State Machine:** Designed the single-reducer (`useReducer`) workflow architecture in `ResearchWorkbench.tsx` to eliminate re-rendering bugs and maintain clean state boundaries.
-* **Provenance Model:** Defined the 4-tier provenance taxonomy (`user`, `assumption`, `clarified`, `derived`) and made it visually distinct and editable.
+* **Provenance Model:** Defined the 4-tier provenance taxonomy (`User Stated`, `System Assumption`, `Clarified`, `AI Inferred`) without misleading arbitrary percentages.
 * **Strict Separation of Compute:** Architected the system such that the LLM is strictly prohibited from computing backtest metrics. All mathematical and return calculations are executed by deterministic TypeScript functions.
 * **Clarification Priority Logic:** Designed the deterministic clarification merge layer (`clarification-merger.ts`) ensuring AI cannot overwrite user-confirmed values.
 * **Friction & Bias Guardrails:** Enforced mandatory next-session open execution to eliminate look-ahead bias and added explicit 15 bps default friction.
+* **Honest Data Labeling:** Explicitly labeled the dataset as a *bundled calibrated sample dataset for prototype demonstration* rather than making unverified claims of real-time exchange feeds.
 
 ---
 

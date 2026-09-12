@@ -47,10 +47,12 @@ export function runDeterministicBacktest(options: RunBacktestOptions): BacktestR
         continue; // skip overlapping trade window
       }
 
-      // Entry on next session open (or current close if next open equals open)
+      // Entry on next session open (Day T+1 Open)
       const entryCandle = series[i + 1] || candle;
       const entryPrice = entryCandle.open || candle.close;
-      const exitIndex = Math.min(i + 1 + holdingDays, series.length - 1);
+
+      // Exit on Day T + holdingDays Close (e.g. 5th session close)
+      const exitIndex = Math.min(i + holdingDays, series.length - 1);
       const exitCandle = series[exitIndex];
       const exitPrice = exitCandle.close;
 
@@ -108,7 +110,7 @@ export function runDeterministicBacktest(options: RunBacktestOptions): BacktestR
       `Small sample size (${trades.length} events). Statistical power is limited.`
     );
   }
-  warnings.push("Tested on calibrated historical benchmark series. Not live execution.");
+  warnings.push("Tested on bundled calibrated sample dataset for prototype demonstration.");
   if (totalCostPct > 0) {
     warnings.push(
       `Returns are net of ${transactionBps} bps transaction fees + ${slippageBps} bps slippage (${totalCostPct}% per round-trip).`
@@ -146,7 +148,7 @@ export function runDeterministicBacktest(options: RunBacktestOptions): BacktestR
   return {
     experimentId: experiment.id,
     method: "deterministic-historical",
-    datasetName: `${experiment.instrument?.value || "NIFTY"} Daily Series`,
+    datasetName: "Bundled Calibrated Sample Dataset (2015–2024)",
     dateRange: { start: startDate, end: endDate },
     metrics,
     learn,
@@ -164,8 +166,10 @@ function generateDeterministicLearnAnalysis(params: {
 }): LearnAnalysis {
   const { experiment, metrics, holdingDays, thresholdPct, startDate, endDate } = params;
 
+  const dropMagnitude = Math.abs(thresholdPct);
+
   const factualSummary = [
-    `Between ${startDate} and ${endDate}, exactly ${metrics.qualifyingEvents} sessions qualified under the rule (daily drop <= ${thresholdPct}%).`,
+    `Between ${startDate} and ${endDate}, exactly ${metrics.qualifyingEvents} sessions qualified under the rule (daily drop >= ${dropMagnitude}%).`,
     `The average ${holdingDays}-day forward net return was ${metrics.meanForwardReturnPct > 0 ? "+" : ""}${metrics.meanForwardReturnPct}% (median: ${metrics.medianForwardReturnPct > 0 ? "+" : ""}${metrics.medianForwardReturnPct}%).`,
     `The unconditional baseline forward return across all trading sessions was ${metrics.baselineUnconditionalReturnPct > 0 ? "+" : ""}${metrics.baselineUnconditionalReturnPct}%.`,
     `The conditional edge over baseline is ${metrics.edgeVsBaselinePct > 0 ? "+" : ""}${metrics.edgeVsBaselinePct} percentage points with a win rate of ${metrics.winRatePct}%.`,
@@ -174,44 +178,44 @@ function generateDeterministicLearnAnalysis(params: {
 
   const cautiousConclusions = [
     metrics.edgeVsBaselinePct > 0
-      ? `In this historical sample, buying after a sharp fall produced a positive conditional excess return over baseline. However, this does not guarantee persistence in future market regimes.`
-      : `In this historical sample, the rule did not demonstrate a significant edge over the unconditional baseline after friction.`,
-    `Distribution risk is asymmetric: the worst trade lost ${metrics.worstTradePct}%, which requires risk management beyond fixed time-based holding exits.`,
-    `Sample frequency (${metrics.qualifyingEvents} trades over ${Math.round(metrics.totalSessions / 252)} years) represents an episodic, low-frequency event strategy.`,
+      ? `In this sample dataset, buying after a ${dropMagnitude}% drop was associated with a higher average forward return than the unconditional baseline. This does not prove the edge will persist in future market conditions.`
+      : `In this sample dataset, the rule did not demonstrate a clear edge over the unconditional baseline after friction.`,
+    `Tail risk must be respected: the worst single trade in this sample lost ${metrics.worstTradePct}%, demonstrating that fixed time exits carry downside exposure during sustained selloffs.`,
+    `Event frequency (${metrics.qualifyingEvents} trades over ${Math.round(metrics.totalSessions / 252)} years) represents an episodic strategy rather than a daily high-frequency setup.`,
   ];
 
   const researchRisks = [
     {
       title: "Look-Ahead & Execution Timing",
-      description: "Entering at next-session open avoids same-session close look-ahead bias, but real market opens may experience gap risk.",
+      description: "Entering at next-session open avoids same-day close look-ahead bias, but real market opens can experience opening gap risk.",
       severity: "medium" as const,
-      mitigation: "Test execution at multiple price points (next open vs 15-minute VWAP).",
+      mitigation: "Compare performance using next-session open execution versus waiting for the next-session close.",
     },
     {
-      title: "Sample Size & Clustering Risk",
-      description: `With ${metrics.qualifyingEvents} events, trades tend to cluster during crisis periods (e.g. 2020), skewing statistical independence.`,
+      title: "Sample Size & Regime Clustering",
+      description: `With ${metrics.qualifyingEvents} events, qualifying triggers tend to cluster during high-volatility market selloffs rather than distributing evenly.`,
       severity: metrics.qualifyingEvents < 50 ? ("high" as const) : ("medium" as const),
-      mitigation: "Sub-divide into high vs low volatility regimes and separate out-of-sample periods.",
+      mitigation: "Evaluate results separately across high-volatility versus low-volatility regimes.",
     },
     {
-      title: "Slippage & Liquidity Friction",
-      description: "Sharp fall days often coincide with elevated bid-ask spreads and liquidity withdrawal.",
+      title: "Transaction Costs & Slippage",
+      description: "Panic selloff days typically experience wider bid-ask spreads and liquidity withdrawal.",
       severity: "medium" as const,
-      mitigation: `Configured ${experiment.costs?.value?.slippageBps || 5} bps slippage assumption; test with 15-25 bps under stress.`,
+      mitigation: `Configured ${experiment.costs?.value?.slippageBps || 5} bps slippage assumption; re-test with 15–20 bps to verify resilience.`,
     },
     {
       title: "Multiple Hypothesis Testing (Data Snooping)",
-      description: "Testing multiple drop thresholds (-1%, -2%, -3%) without correction can produce spurious discoveries.",
+      description: "Testing multiple drop thresholds (e.g. 0.5%, 1.0%, 1.5%, 2.0%) until finding a winning result creates false confidence.",
       severity: "high" as const,
-      mitigation: "Fix threshold parameters a priori or apply White's Reality Check / Bonferroni adjustment.",
+      mitigation: "Predefine parameters before testing and validate findings on a holdout out-of-sample period (e.g., 2023–2024).",
     },
   ];
 
   const nextQuestions = [
-    `How does performance change if the entry threshold is varied (-0.5%, -1.5%, -2.0%) without cherry-picking?`,
-    `Does adding a volatility filter (e.g., India VIX > 20 or 200-day moving average filter) improve the win rate?`,
-    `What happens if an active stop-loss (e.g. -2.5%) or trailing stop is used instead of a fixed ${holdingDays}-day time exit?`,
-    `Does this pattern hold in an out-of-sample recent period or across global indices (S&P 500, NASDAQ)?`,
+    `How does performance change if the drop threshold is changed to 0.5%, 1.5%, or 2.0% without cherry-picking?`,
+    `Does adding a market trend filter (e.g., only buying when price is above its 200-day moving average) improve the win rate?`,
+    `What happens if a predefined stop-loss (e.g. -2.0%) is added instead of holding strictly for ${holdingDays} days?`,
+    `How does this strategy perform when tested on an out-of-sample time window (e.g., 2023–2024)?`,
   ];
 
   return {

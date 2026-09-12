@@ -13,6 +13,19 @@ export const ClarificationField: React.FC<ClarificationFieldProps> = ({
   value,
   onChange,
 }) => {
+  const isEntryDrop = field.key === "entryCondition";
+  // Display positive magnitude if it's a drop threshold
+  const displayValue = isEntryDrop && typeof value === "number" ? Math.abs(value) : value;
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (field.type === "number") {
+      const val = parseFloat(e.target.value) || 0;
+      onChange(isEntryDrop ? Math.abs(val) : val);
+    } else {
+      onChange(e.target.value);
+    }
+  };
+
   return (
     <div className="bg-sand-50 border border-sand-300 rounded-lg p-4 transition-all hover:border-sand-400">
       <div className="flex items-start justify-between gap-2 mb-2">
@@ -37,7 +50,10 @@ export const ClarificationField: React.FC<ClarificationFieldProps> = ({
       {field.options && field.options.length > 0 && (
         <div className="flex flex-wrap gap-2 mb-3">
           {field.options.map((opt) => {
-            const isSelected = String(value) === String(opt.value);
+            const isSelected =
+              String(displayValue) === String(opt.value) ||
+              String(value) === String(opt.value) ||
+              (isEntryDrop && Math.abs(Number(value)) === Math.abs(Number(opt.value)));
             return (
               <button
                 key={String(opt.value)}
@@ -57,17 +73,23 @@ export const ClarificationField: React.FC<ClarificationFieldProps> = ({
       )}
 
       <div className="flex items-center gap-2">
-        <input
-          id={`clarify_${field.key}`}
-          type={field.type === "number" ? "number" : "text"}
-          step={field.type === "number" ? "any" : undefined}
-          value={value}
-          onChange={(e) =>
-            onChange(field.type === "number" ? parseFloat(e.target.value) || 0 : e.target.value)
-          }
-          placeholder={`e.g. ${field.suggestedValue}`}
-          className="w-full text-xs md:text-sm px-3 py-2 bg-white border border-sand-300 rounded-md focus:border-cyprus-700 focus:ring-1 focus:ring-cyprus-700 outline-none"
-        />
+        <div className="relative w-full">
+          <input
+            id={`clarify_${field.key}`}
+            type={field.type === "number" ? "number" : "text"}
+            step={field.type === "number" ? "0.1" : undefined}
+            min={field.type === "number" && isEntryDrop ? "0.1" : undefined}
+            value={displayValue}
+            onChange={handleInputChange}
+            placeholder={`e.g. ${isEntryDrop ? Math.abs(Number(field.suggestedValue)) : field.suggestedValue}`}
+            className="w-full text-xs md:text-sm px-3 py-2 pr-16 bg-white border border-sand-300 rounded-md focus:border-cyprus-700 focus:ring-1 focus:ring-cyprus-700 outline-none"
+          />
+          {isEntryDrop && (
+            <span className="absolute right-3 top-2 text-xs text-slate-500 font-medium pointer-events-none">
+              % drop
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );

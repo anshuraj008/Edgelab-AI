@@ -36,10 +36,10 @@ export const ResultSummary: React.FC<ResultSummaryProps> = ({ result }) => {
             Deterministic Test Output
           </span>
           <h3 className="text-base font-semibold text-slate-900">
-            Empirical Evidence Summary ({datasetName})
+            Sample Test Evidence ({datasetName})
           </h3>
           <p className="text-xs text-slate-500">
-            Evaluation Period: {dateRange.start} &rarr; {dateRange.end} ({metrics.totalSessions} sessions evaluated)
+            Evaluation Window: {dateRange.start} &rarr; {dateRange.end} ({metrics.totalSessions} daily sessions evaluated)
           </p>
         </div>
         <div className="text-right">

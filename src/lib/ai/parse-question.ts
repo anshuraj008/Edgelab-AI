@@ -10,7 +10,7 @@ export interface ParseResult {
 }
 
 const SYSTEM_PROMPT = `
-You are a senior quantitative trading research assistant specializing in converting natural language market hypotheses into structured, testable experiments.
+You are a quantitative trading research assistant specializing in converting natural language market hypotheses into structured, testable experiments.
 
 Your core mission:
 1. Turn vague, ambiguous market questions into precise, transparent research definitions.
@@ -24,16 +24,15 @@ Output MUST be strict JSON matching this exact structure:
   "experimentDraft": {
     "id": "exp_<unique_id>",
     "originalQuery": "<the user query>",
-    "instrument": { "value": "NIFTY", "source": "user" | "derived" | "assumption", "confidence": 0.95 },
-    "timeframe": { "value": "daily", "source": "derived", "confidence": 0.95 },
+    "instrument": { "value": "NIFTY", "source": "user" | "derived" | "assumption" },
+    "timeframe": { "value": "daily", "source": "derived" },
     "entryCondition": {
       "value": {
         "type": "daily_return_drop",
         "thresholdPct": -1.0,
         "description": "Daily close falls by 1.0% or more"
       },
-      "source": "assumption" | "user" | "derived",
-      "confidence": 0.85
+      "source": "assumption" | "user" | "derived"
     },
     "exitCondition": {
       "value": {
@@ -41,19 +40,16 @@ Output MUST be strict JSON matching this exact structure:
         "holdingDays": 5,
         "description": "Exit position after 5 trading sessions"
       },
-      "source": "assumption" | "user" | "derived",
-      "confidence": 0.8
+      "source": "assumption" | "user" | "derived"
     },
-    "holdingPeriodDays": { "value": 5, "source": "assumption" | "user" | "derived", "confidence": 0.8 },
+    "holdingPeriodDays": { "value": 5, "source": "assumption" | "user" | "derived" },
     "testPeriod": {
       "value": { "start": "2015-01-01", "end": "2024-12-31" },
-      "source": "assumption" | "user" | "derived",
-      "confidence": 0.9
+      "source": "assumption" | "user" | "derived"
     },
     "costs": {
       "value": { "transactionBps": 10, "slippageBps": 5 },
-      "source": "assumption",
-      "confidence": 0.95
+      "source": "assumption"
     },
     "filters": [],
     "hypothesis": "Post-fall forward return is positive and exceeds unconditional benchmark baseline.",
@@ -65,15 +61,25 @@ Output MUST be strict JSON matching this exact structure:
       "key": "entryCondition",
       "question": "What percentage decline qualifies as a 'sharp fall'?",
       "whyImportant": "A numeric threshold is required to trigger reproducible entry signals.",
-      "suggestedValue": -1.0,
-      "type": "number"
+      "suggestedValue": 1.0,
+      "type": "number",
+      "options": [
+        { "label": "1.0% drop", "value": 1.0 },
+        { "label": "1.5% drop", "value": 1.5 },
+        { "label": "2.0% drop", "value": 2.0 }
+      ]
     },
     {
       "key": "holdingPeriodDays",
       "question": "How many trading sessions should the position be held before exiting?",
       "whyImportant": "Defines the exact forward horizon over which edge is measured.",
       "suggestedValue": 5,
-      "type": "number"
+      "type": "number",
+      "options": [
+        { "label": "3 days", "value": 3 },
+        { "label": "5 days", "value": 5 },
+        { "label": "10 days", "value": 10 }
+      ]
     },
     {
       "key": "testPeriod",
@@ -90,7 +96,7 @@ Output MUST be strict JSON matching this exact structure:
   "assumptions": [
     {
       "field": "entryCondition",
-      "value": "-1.0% daily return drop",
+      "value": "1.0% daily return drop",
       "reason": "Common baseline definition for single-day pullback in index products.",
       "riskIfIncorrect": "Setting threshold too loose dilutes signal; too tight causes small sample size."
     },
@@ -147,7 +153,7 @@ ${JSON.stringify(clarifications || {}, null, 2)}
     }
   }
 
-  // High-fidelity deterministic fallback parser
+  // Deterministic fallback parser
   return createSemanticFallbackParse(query, clarifications);
 }
 
@@ -203,13 +209,11 @@ function createSemanticFallbackParse(
     instrument: {
       value: instrumentName,
       source: instrumentSource,
-      confidence: 0.95,
       reason: instrumentSource === "user" ? "Explicitly mentioned in query" : "Defaulted to benchmark index",
     },
     timeframe: {
       value: "daily",
       source: "derived",
-      confidence: 0.95,
       reason: "Daily timeframe derived from standard swing research questions",
     },
     entryCondition: {
@@ -219,8 +223,7 @@ function createSemanticFallbackParse(
         description: `Daily close falls by ${Math.abs(thresholdPct)}% or more`,
       },
       source: thresholdSource,
-      confidence: thresholdSource === "user" ? 0.95 : 0.8,
-      reason: thresholdSource === "user" ? "Explicit percentage specified" : "Assumed standard -1.0% drop for pullback testing",
+      reason: thresholdSource === "user" ? "Explicit percentage specified" : "Assumed standard 1.0% drop for pullback testing",
     },
     exitCondition: {
       value: {
@@ -229,24 +232,20 @@ function createSemanticFallbackParse(
         description: `Exit position after ${holdingDays} trading sessions`,
       },
       source: holdingSource,
-      confidence: 0.85,
       reason: "Time-based exit after specified holding horizon",
     },
     holdingPeriodDays: {
       value: holdingDays,
       source: holdingSource,
-      confidence: 0.85,
     },
     testPeriod: {
       value: { start: "2015-01-01", end: "2024-12-31" },
       source: "assumption",
-      confidence: 0.9,
       reason: "10-year test period provides sample across diverse market regimes",
     },
     costs: {
       value: { transactionBps: 10, slippageBps: 5 },
       source: "assumption",
-      confidence: 0.95,
       reason: "15 bps round-trip friction reflects realistic index ETF/futures execution",
     },
     filters: [],
@@ -262,12 +261,12 @@ function createSemanticFallbackParse(
       key: "entryCondition",
       question: "What percentage decline qualifies as a 'sharp fall'?",
       whyImportant: "A quantitative threshold is necessary to identify reproducible entry trigger dates.",
-      suggestedValue: -1.0,
+      suggestedValue: 1.0,
       type: "number",
       options: [
-        { label: "Moderate dip (-1.0%)", value: -1.0 },
-        { label: "Significant drop (-1.5%)", value: -1.5 },
-        { label: "Severe selloff (-2.0%)", value: -2.0 },
+        { label: "1.0% drop", value: 1.0 },
+        { label: "1.5% drop", value: 1.5 },
+        { label: "2.0% drop", value: 2.0 },
       ],
     });
   }
@@ -280,9 +279,9 @@ function createSemanticFallbackParse(
       suggestedValue: 5,
       type: "number",
       options: [
-        { label: "Short swing (3 days)", value: 3 },
-        { label: "Standard swing (5 days)", value: 5 },
-        { label: "Extended hold (10 days)", value: 10 },
+        { label: "3 days", value: 3 },
+        { label: "5 days", value: 5 },
+        { label: "10 days", value: 10 },
       ],
     });
   }
@@ -302,7 +301,7 @@ function createSemanticFallbackParse(
   const assumptions: Assumption[] = [
     {
       field: "entryCondition",
-      value: `${thresholdPct}% daily drop`,
+      value: `${Math.abs(thresholdPct)}% daily drop`,
       reason: "Common baseline definition for single-day pullback in index products.",
       riskIfIncorrect: "Too loose dilutes signal; too tight creates statistically fragile small samples.",
     },
