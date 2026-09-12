@@ -168,7 +168,7 @@ export const ResultSummary: React.FC<ResultSummaryProps> = ({ result }) => {
                   {metrics.distributionBuckets.map((entry, index) => (
                     <Cell
                       key={`cell-${index}`}
-                      fill={entry.isPositive ? "#006454" : "#B45309"}
+                      fill={entry.isPositive ? "#21F1A8" : "#B45309"}
                     />
                   ))}
                 </Bar>

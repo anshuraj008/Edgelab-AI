@@ -144,16 +144,16 @@ export const TestPanel: React.FC<TestPanelProps> = ({
           type="button"
           disabled={isLoading}
           onClick={() => onRunTest(datasetSource)}
-          className="flex items-center gap-2 px-6 py-3 bg-cyprus-700 hover:bg-cyprus-800 disabled:opacity-50 text-white rounded-lg text-sm font-medium shadow-sm transition-all"
+          className="flex items-center gap-2 px-6 py-3 bg-cyprus-700 hover:bg-cyprus-600 disabled:opacity-50 text-slate-950 font-bold rounded-lg text-sm shadow-sm transition-all"
         >
           {isLoading ? (
             <>
-              <Loader2 className="w-4 h-4 animate-spin" />
+              <Loader2 className="w-4 h-4 animate-spin text-slate-950" />
               <span>Computing Deterministic Metrics...</span>
             </>
           ) : (
             <>
-              <PlayCircle className="w-4 h-4" />
+              <PlayCircle className="w-4 h-4 text-slate-950" />
               <span>Run Sample Backtest</span>
             </>
           )}

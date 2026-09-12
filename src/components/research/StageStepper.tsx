@@ -41,26 +41,26 @@ export const StageStepper: React.FC<StageStepperProps> = ({
               type="button"
               disabled={!isAccessible}
               onClick={() => isAccessible && onSelectStage(s.key)}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium transition-all whitespace-nowrap ${
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-medium transition-all whitespace-nowrap ${
                 isActive
-                  ? "bg-cyprus-700 text-white shadow-sm ring-1 ring-cyprus-800"
+                  ? "bg-cyprus-700 text-slate-950 font-bold shadow-sm ring-1 ring-cyprus-600"
                   : isCompleted
                   ? "bg-sand-200 text-cyprus-800 hover:bg-sand-300"
                   : isAccessible
                   ? "bg-white text-slate-700 hover:bg-sand-100 border border-sand-300"
-                  : "bg-transparent text-slate-400 cursor-not-allowed border border-transparent"
+                  : "bg-transparent text-slate-300 cursor-not-allowed border border-transparent"
               }`}
             >
               <div
-                className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] ${
+                className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
                   isActive
-                    ? "bg-cyprus-800 text-white"
+                    ? "bg-slate-950/20 text-slate-950 font-bold"
                     : isCompleted
                     ? "bg-cyprus-600 text-white"
-                    : "bg-slate-200 text-slate-600"
+                    : "bg-sand-300 text-slate-600"
                 }`}
               >
-                {isCompleted ? <Check className="w-3 h-3" /> : s.number}
+                {isCompleted ? <Check className="w-3 h-3 text-white" /> : s.number}
               </div>
               <span className="hidden sm:inline">{s.label.split(". ")[1]}</span>
               <span className="sm:hidden">{s.label}</span>

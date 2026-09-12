@@ -69,12 +69,12 @@ export const ResearchPrompt: React.FC<ResearchPromptProps> = ({
             type="submit"
             disabled={!query.trim() || isLoading}
             aria-label="Structure research question"
-            className="absolute bottom-3.5 right-3.5 p-2.5 rounded-lg bg-cyprus-700 hover:bg-cyprus-800 disabled:opacity-40 disabled:hover:bg-cyprus-700 text-white transition-all shadow-sm flex items-center justify-center"
+            className="absolute bottom-3.5 right-3.5 p-2.5 rounded-lg bg-cyprus-700 hover:bg-cyprus-600 disabled:opacity-40 disabled:hover:bg-cyprus-700 text-slate-950 font-bold transition-all shadow-sm flex items-center justify-center"
           >
             {isLoading ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
+              <Loader2 className="w-4 h-4 animate-spin text-slate-950" />
             ) : (
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 text-slate-950" />
             )}
           </button>
         </div>

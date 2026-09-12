@@ -107,10 +107,10 @@ export const ClarificationPanel: React.FC<ClarificationPanelProps> = ({
           </button>
           <button
             type="submit"
-            className="flex items-center gap-2 px-5 py-2.5 bg-cyprus-700 hover:bg-cyprus-800 text-white rounded-lg text-xs md:text-sm font-medium shadow-sm transition-all"
+            className="flex items-center gap-2 px-5 py-2.5 bg-cyprus-700 hover:bg-cyprus-600 text-slate-950 font-bold rounded-lg text-xs md:text-sm shadow-sm transition-all"
           >
             <span>Confirm Clarifications & Build Experiment</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 text-slate-950" />
           </button>
         </div>
       </form>

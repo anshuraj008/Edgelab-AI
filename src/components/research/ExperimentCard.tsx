@@ -410,9 +410,9 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
         <button
           type="button"
           onClick={onProceedToTest}
-          className="flex items-center gap-2 px-6 py-2.5 bg-cyprus-700 hover:bg-cyprus-800 text-white rounded-lg text-xs md:text-sm font-medium shadow-sm transition-all"
+          className="flex items-center gap-2 px-6 py-2.5 bg-cyprus-700 hover:bg-cyprus-600 text-slate-950 font-bold rounded-lg text-xs md:text-sm shadow-sm transition-all"
         >
-          <PlayCircle className="w-4 h-4" />
+          <PlayCircle className="w-4 h-4 text-slate-950 font-bold" />
           <span>Execute Deterministic Test</span>
         </button>
       </div>

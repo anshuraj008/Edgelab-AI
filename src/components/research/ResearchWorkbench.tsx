@@ -248,16 +248,16 @@ export const ResearchWorkbench: React.FC = () => {
   return (
     <div className="min-h-screen bg-sand-100 flex flex-col">
       {/* Top Header */}
-      <header className="bg-cyprus-700 text-white border-b border-cyprus-800 shadow-sm sticky top-0 z-30">
+      <header className="bg-cyprus-950 text-white border-b border-cyprus-800 shadow-sm sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-cyprus-800 flex items-center justify-center border border-cyprus-600 shadow-xs">
-              <Sparkles className="w-4 h-4 text-cyprus-200" />
+            <div className="w-8 h-8 rounded-lg bg-cyprus-900 flex items-center justify-center border border-cyprus-700 shadow-xs">
+              <Sparkles className="w-4 h-4 text-cyprus-400" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-base font-bold tracking-tight">EdgeLab AI</h1>
-                <span className="text-[10px] bg-cyprus-800/80 text-cyprus-200 px-2 py-0.5 rounded border border-cyprus-600 font-mono">
+                <h1 className="text-base font-bold tracking-tight text-white">EdgeLab AI</h1>
+                <span className="text-[10px] bg-cyprus-900 text-cyprus-400 px-2 py-0.5 rounded border border-cyprus-700 font-mono">
                   Research Workbench
                 </span>
               </div>
@@ -270,14 +270,14 @@ export const ResearchWorkbench: React.FC = () => {
           <div className="flex items-center gap-3">
             {state.history.length > 0 && (
               <div className="hidden md:flex items-center gap-1.5 text-xs text-cyprus-200">
-                <History className="w-3.5 h-3.5" />
+                <History className="w-3.5 h-3.5 text-cyprus-400" />
                 <span>{state.history.length} session{state.history.length > 1 ? "s" : ""}</span>
               </div>
             )}
             <button
               type="button"
               onClick={() => dispatch({ type: "RESET_WORKFLOW" })}
-              className="text-xs bg-cyprus-800 hover:bg-cyprus-900 text-cyprus-100 px-3 py-1.5 rounded-md border border-cyprus-600 transition-colors"
+              className="text-xs bg-cyprus-900 hover:bg-cyprus-800 text-cyprus-100 px-3 py-1.5 rounded-md border border-cyprus-700 transition-colors"
             >
               New Query
             </button>

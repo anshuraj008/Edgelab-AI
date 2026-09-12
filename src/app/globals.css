@@ -6,13 +6,13 @@
   :root {
     --background: #F5F2EA;
     --foreground: #1E293B;
-    --primary: #004741;
-    --primary-foreground: #FFFFFF;
+    --primary: #21F1A8;
+    --primary-foreground: #03281C;
     --card: #FFFFFF;
     --card-foreground: #1E293B;
     --border: #E5E0D8;
     --input: #E5E0D8;
-    --ring: #004741;
+    --ring: #21F1A8;
   }
 
   body {
@@ -25,9 +25,9 @@
   }
 }
 
-/* Custom focus ring for accessibility */
+/* Custom focus ring for accessibility with Tiffany highlight */
 *:focus-visible {
-  outline: 2px solid #004741;
+  outline: 2px solid #21F1A8;
   outline-offset: 2px;
 }
 
