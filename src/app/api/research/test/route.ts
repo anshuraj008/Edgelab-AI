@@ -40,6 +40,27 @@ export async function POST(req: NextRequest) {
     const db = getDb();
     if (db) {
       try {
+        await db.insert(experiments).values({
+          id: experiment.id,
+          sessionId: experiment.id,
+          instrument: experiment.instrument.value,
+          timeframe: experiment.timeframe.value,
+          entryCondition: JSON.stringify(experiment.entryCondition.value),
+          exitCondition: JSON.stringify(experiment.exitCondition.value),
+          holdingPeriod: String(experiment.holdingPeriodDays.value),
+          testPeriod: JSON.stringify(experiment.testPeriod.value),
+          filtersJson: experiment.filters,
+          costsJson: experiment.costs.value,
+          hypothesis: experiment.hypothesis,
+          provenanceJson: {
+            instrument: experiment.instrument,
+            entryCondition: experiment.entryCondition,
+            holdingPeriodDays: experiment.holdingPeriodDays,
+            testPeriod: experiment.testPeriod,
+            costs: experiment.costs,
+          },
+        }).onConflictDoNothing();
+
         await db.insert(testRuns).values({
           id: `run_${Date.now()}`,
           experimentId: experiment.id,

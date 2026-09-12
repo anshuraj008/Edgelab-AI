@@ -44,6 +44,27 @@ export async function POST(req: NextRequest) {
           originalQuestion: query,
           status: structuredResult.readyToTest ? "clarified" : "draft",
         }).onConflictDoNothing();
+
+        await db.insert(experiments).values({
+          id: structuredResult.experimentDraft.id,
+          sessionId: structuredResult.experimentDraft.id,
+          instrument: structuredResult.experimentDraft.instrument.value,
+          timeframe: structuredResult.experimentDraft.timeframe.value,
+          entryCondition: JSON.stringify(structuredResult.experimentDraft.entryCondition.value),
+          exitCondition: JSON.stringify(structuredResult.experimentDraft.exitCondition.value),
+          holdingPeriod: String(structuredResult.experimentDraft.holdingPeriodDays.value),
+          testPeriod: JSON.stringify(structuredResult.experimentDraft.testPeriod.value),
+          filtersJson: structuredResult.experimentDraft.filters,
+          costsJson: structuredResult.experimentDraft.costs.value,
+          hypothesis: structuredResult.experimentDraft.hypothesis,
+          provenanceJson: {
+            instrument: structuredResult.experimentDraft.instrument,
+            entryCondition: structuredResult.experimentDraft.entryCondition,
+            holdingPeriodDays: structuredResult.experimentDraft.holdingPeriodDays,
+            testPeriod: structuredResult.experimentDraft.testPeriod,
+            costs: structuredResult.experimentDraft.costs,
+          },
+        }).onConflictDoNothing();
       } catch (dbErr) {
         console.warn("Could not save to Neon DB:", dbErr);
       }
