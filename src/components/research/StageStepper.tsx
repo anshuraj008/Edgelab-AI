@@ -28,7 +28,7 @@ export const StageStepper: React.FC<StageStepperProps> = ({
 
   return (
     <nav aria-label="Research workflow steps" className="w-full">
-      <div className="flex items-center justify-between border-b border-obsidian-600 pb-3 overflow-x-auto gap-2">
+      <div className="flex items-center justify-between border-b border-cyber-600 pb-3 overflow-x-auto gap-2">
         {STAGES.map((s, idx) => {
           const isActive = s.key === currentStage;
           const isCompleted = idx < currentIndex;
@@ -43,21 +43,21 @@ export const StageStepper: React.FC<StageStepperProps> = ({
               onClick={() => isAccessible && onSelectStage(s.key)}
               className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs md:text-sm font-medium transition-all whitespace-nowrap ${
                 isActive
-                  ? "bg-madder-700 text-snow-100 shadow-madder-sm ring-1 ring-madder-500"
+                  ? "bg-coolTeal-500 text-cyber-950 font-semibold shadow-teal-sm ring-1 ring-coolTeal-400"
                   : isCompleted
-                  ? "bg-obsidian-750 text-snow-100 hover:bg-obsidian-700 border border-obsidian-600"
+                  ? "bg-cyber-750 text-icy-100 hover:bg-cyber-700 border border-cyber-600"
                   : isAccessible
-                  ? "bg-obsidian-800 text-snow-400 hover:bg-obsidian-750 border border-obsidian-600"
-                  : "bg-transparent text-snow-500 opacity-40 cursor-not-allowed border border-transparent"
+                  ? "bg-cyber-800 text-icy-300 hover:bg-cyber-750 border border-cyber-600"
+                  : "bg-transparent text-icy-500 opacity-40 cursor-not-allowed border border-transparent"
               }`}
             >
               <div
                 className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
                   isActive
-                    ? "bg-white/20 text-white"
+                    ? "bg-cyber-950/30 text-cyber-950 font-bold"
                     : isCompleted
                     ? "bg-status-success/20 text-status-success border border-status-success/40"
-                    : "bg-obsidian-700 text-snow-500"
+                    : "bg-cyber-700 text-icy-500"
                 }`}
               >
                 {isCompleted ? <Check className="w-3 h-3 text-status-success" /> : s.number}

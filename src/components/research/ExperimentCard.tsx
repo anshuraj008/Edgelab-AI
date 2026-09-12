@@ -92,18 +92,18 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
   };
 
   return (
-    <div className="bg-obsidian-800 border border-obsidian-600 rounded-xl p-6 md:p-8 shadow-card transition-all">
+    <div className="bg-cyber-800 border border-cyber-600 rounded-xl p-6 md:p-8 shadow-card transition-all">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-obsidian-600 pb-5 mb-6 gap-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-cyber-600 pb-5 mb-6 gap-3">
         <div className="flex items-center gap-3.5">
-          <div className="p-2.5 rounded-lg bg-madder-700/15 border border-madder-700/30 text-madder-400 shadow-madder-sm">
-            <Layers className="w-5 h-5 text-madder-400" />
+          <div className="p-2.5 rounded-lg bg-coolTeal-500/15 border border-coolTeal-500/30 text-coolTeal-400 shadow-teal-sm">
+            <Layers className="w-5 h-5 text-coolTeal-400" />
           </div>
           <div>
-            <h3 className="text-base font-bold text-snow-100">
+            <h3 className="text-base font-bold text-icy-100">
               Defined Research Experiment
             </h3>
-            <p className="text-xs text-snow-400">
+            <p className="text-xs text-icy-300">
               Review testable experiment definitions, parameter origins, and execution constraints.
             </p>
           </div>
@@ -123,7 +123,7 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
             <button
               type="button"
               onClick={() => setIsEditing(true)}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-obsidian-750 hover:bg-obsidian-700 text-snow-400 hover:text-snow-100 border border-obsidian-600 rounded-lg text-xs font-medium transition-colors"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-cyber-750 hover:bg-cyber-700 text-icy-300 hover:text-icy-100 border border-cyber-600 rounded-lg text-xs font-medium transition-colors"
             >
               <Edit2 className="w-3.5 h-3.5" />
               <span>Edit Parameters</span>
@@ -137,8 +137,8 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
         {/* Left 2 Cols: Experiment Parameters */}
         <div className="lg:col-span-2 space-y-4">
           {/* Hypothesis Banner */}
-          <div className="p-4 bg-obsidian-750/90 border border-obsidian-600 rounded-xl">
-            <span className="text-[10px] font-bold text-madder-400 uppercase tracking-wider block mb-1.5">
+          <div className="p-4 bg-cyber-750/90 border border-cyber-600 rounded-xl">
+            <span className="text-[10px] font-bold text-coolTeal-400 uppercase tracking-wider block mb-1.5">
               Formal Research Hypothesis
             </span>
             {isEditing ? (
@@ -146,10 +146,10 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
                 value={hypothesisVal}
                 onChange={(e) => setHypothesisVal(e.target.value)}
                 rows={2}
-                className="w-full text-xs p-2.5 bg-obsidian-800 text-snow-100 border border-obsidian-600 rounded-lg focus:border-madder-600 outline-none"
+                className="w-full text-xs p-2.5 bg-cyber-800 text-icy-100 border border-cyber-600 rounded-lg focus:border-coolTeal-500 outline-none"
               />
             ) : (
-              <p className="text-xs md:text-sm font-medium text-snow-100">
+              <p className="text-xs md:text-sm font-medium text-icy-100">
                 &ldquo;{experiment.hypothesis}&rdquo;
               </p>
             )}
@@ -158,9 +158,9 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
           {/* Parameters Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             {/* Instrument */}
-            <div className="p-3.5 bg-obsidian-750/90 border border-obsidian-600 rounded-xl">
+            <div className="p-3.5 bg-cyber-750/90 border border-cyber-600 rounded-xl">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-semibold text-snow-400">Instrument</span>
+                <span className="text-xs font-semibold text-icy-300">Instrument</span>
                 <ProvenanceBadge
                   source={experiment.instrument.source}
                   userEdited={experiment.instrument.userEdited}
@@ -171,32 +171,32 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
                   type="text"
                   value={instrumentVal}
                   onChange={(e) => setInstrumentVal(e.target.value)}
-                  className="w-full text-xs p-2 bg-obsidian-800 text-snow-100 border border-obsidian-600 rounded-lg"
+                  className="w-full text-xs p-2 bg-cyber-800 text-icy-100 border border-cyber-600 rounded-lg"
                 />
               ) : (
-                <span className="text-sm font-bold text-snow-100 font-mono">
+                <span className="text-sm font-bold text-icy-100 font-mono">
                   {experiment.instrument.value}
                 </span>
               )}
             </div>
 
             {/* Timeframe */}
-            <div className="p-3.5 bg-obsidian-750/90 border border-obsidian-600 rounded-xl">
+            <div className="p-3.5 bg-cyber-750/90 border border-cyber-600 rounded-xl">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-semibold text-snow-400">Timeframe</span>
+                <span className="text-xs font-semibold text-icy-300">Timeframe</span>
                 <ProvenanceBadge
                   source={experiment.timeframe.source}
                 />
               </div>
-              <span className="text-sm font-bold text-snow-100 uppercase font-mono">
+              <span className="text-sm font-bold text-icy-100 uppercase font-mono">
                 {experiment.timeframe.value}
               </span>
             </div>
 
             {/* Entry Trigger */}
-            <div className="p-3.5 bg-obsidian-750/90 border border-obsidian-600 rounded-xl">
+            <div className="p-3.5 bg-cyber-750/90 border border-cyber-600 rounded-xl">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-semibold text-snow-400 flex items-center gap-1.5">
+                <span className="text-xs font-semibold text-icy-300 flex items-center gap-1.5">
                   <TrendingDown className="w-3.5 h-3.5 text-status-warning" />
                   <span>Entry Trigger Condition</span>
                 </span>
@@ -207,23 +207,23 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
               </div>
               {isEditing ? (
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-snow-400">Decline:</span>
+                  <span className="text-xs text-icy-300">Decline:</span>
                   <input
                     type="number"
                     step="0.1"
                     min="0.1"
                     value={thresholdMagnitude}
                     onChange={(e) => setThresholdMagnitude(Math.abs(parseFloat(e.target.value) || 1.0))}
-                    className="w-20 text-xs p-1.5 bg-obsidian-800 text-snow-100 border border-obsidian-600 rounded font-mono"
+                    className="w-20 text-xs p-1.5 bg-cyber-800 text-icy-100 border border-cyber-600 rounded font-mono"
                   />
-                  <span className="text-xs text-snow-400 font-medium">% drop</span>
+                  <span className="text-xs text-icy-300 font-medium">% drop</span>
                 </div>
               ) : (
                 <div>
                   <span className="text-sm font-bold text-status-warning font-mono">
                     Daily Return &le; -{Math.abs(experiment.entryCondition.value.thresholdPct)}% ({Math.abs(experiment.entryCondition.value.thresholdPct)}% drop)
                   </span>
-                  <p className="text-[11px] text-snow-500 mt-1">
+                  <p className="text-[11px] text-icy-500 mt-1">
                     Execution at next session open to eliminate look-ahead bias.
                   </p>
                 </div>
@@ -231,10 +231,10 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
             </div>
 
             {/* Exit Condition & Holding Horizon */}
-            <div className="p-3.5 bg-obsidian-750/90 border border-obsidian-600 rounded-xl">
+            <div className="p-3.5 bg-cyber-750/90 border border-cyber-600 rounded-xl">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-semibold text-snow-400 flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-madder-400" />
+                <span className="text-xs font-semibold text-icy-300 flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-coolTeal-400" />
                   <span>Holding Period & Exit</span>
                 </span>
                 <ProvenanceBadge
@@ -250,16 +250,16 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
                     max="252"
                     value={holdingDaysVal}
                     onChange={(e) => setHoldingDaysVal(parseInt(e.target.value, 10) || 5)}
-                    className="w-20 text-xs p-1.5 bg-obsidian-800 text-snow-100 border border-obsidian-600 rounded font-mono"
+                    className="w-20 text-xs p-1.5 bg-cyber-800 text-icy-100 border border-cyber-600 rounded font-mono"
                   />
-                  <span className="text-xs text-snow-400">trading sessions</span>
+                  <span className="text-xs text-icy-300">trading sessions</span>
                 </div>
               ) : (
                 <div>
-                  <span className="text-sm font-bold text-madder-400 font-mono">
+                  <span className="text-sm font-bold text-coolTeal-400 font-mono">
                     {experiment.holdingPeriodDays.value} Trading Sessions
                   </span>
-                  <p className="text-[11px] text-snow-500 mt-1">
+                  <p className="text-[11px] text-icy-500 mt-1">
                     Fixed horizon time-exit without early discretionary intervention.
                   </p>
                 </div>
@@ -267,10 +267,10 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
             </div>
 
             {/* Test Period */}
-            <div className="p-3.5 bg-obsidian-750/90 border border-obsidian-600 rounded-xl">
+            <div className="p-3.5 bg-cyber-750/90 border border-cyber-600 rounded-xl">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-semibold text-snow-400 flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5 text-snow-500" />
+                <span className="text-xs font-semibold text-icy-300 flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-icy-500" />
                   <span>Evaluation Date Window</span>
                 </span>
                 <ProvenanceBadge
@@ -284,26 +284,26 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
                     type="date"
                     value={startDateVal}
                     onChange={(e) => setStartDateVal(e.target.value)}
-                    className="text-[11px] p-1.5 bg-obsidian-800 text-snow-100 border border-obsidian-600 rounded"
+                    className="text-[11px] p-1.5 bg-cyber-800 text-icy-100 border border-cyber-600 rounded"
                   />
                   <input
                     type="date"
                     value={endDateVal}
                     onChange={(e) => setEndDateVal(e.target.value)}
-                    className="text-[11px] p-1.5 bg-obsidian-800 text-snow-100 border border-obsidian-600 rounded"
+                    className="text-[11px] p-1.5 bg-cyber-800 text-icy-100 border border-cyber-600 rounded"
                   />
                 </div>
               ) : (
-                <span className="text-xs font-bold text-snow-100 font-mono">
+                <span className="text-xs font-bold text-icy-100 font-mono">
                   {experiment.testPeriod.value.start} &rarr; {experiment.testPeriod.value.end}
                 </span>
               )}
             </div>
 
             {/* Costs & Slippage */}
-            <div className="p-3.5 bg-obsidian-750/90 border border-obsidian-600 rounded-xl">
+            <div className="p-3.5 bg-cyber-750/90 border border-cyber-600 rounded-xl">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-semibold text-snow-400 flex items-center gap-1.5">
+                <span className="text-xs font-semibold text-icy-300 flex items-center gap-1.5">
                   <DollarSign className="w-3.5 h-3.5 text-status-success" />
                   <span>Transaction Costs & Slippage</span>
                 </span>
@@ -315,22 +315,22 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
               {isEditing ? (
                 <div className="grid grid-cols-2 gap-2 text-[11px]">
                   <div>
-                    <span className="text-snow-400">Fees:</span>
+                    <span className="text-icy-300">Fees:</span>
                     <input
                       type="number"
                       value={txBpsVal}
                       onChange={(e) => setTxBpsVal(parseFloat(e.target.value) || 0)}
-                      className="w-16 p-1 ml-1 bg-obsidian-800 text-snow-100 border border-obsidian-600 rounded font-mono"
+                      className="w-16 p-1 ml-1 bg-cyber-800 text-icy-100 border border-cyber-600 rounded font-mono"
                     />{" "}
                     bps
                   </div>
                   <div>
-                    <span className="text-snow-400">Slip:</span>
+                    <span className="text-icy-300">Slip:</span>
                     <input
                       type="number"
                       value={slippageBpsVal}
                       onChange={(e) => setSlippageBpsVal(parseFloat(e.target.value) || 0)}
-                      className="w-16 p-1 ml-1 bg-obsidian-800 text-snow-100 border border-obsidian-600 rounded font-mono"
+                      className="w-16 p-1 ml-1 bg-cyber-800 text-icy-100 border border-cyber-600 rounded font-mono"
                     />{" "}
                     bps
                   </div>
@@ -352,47 +352,47 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
         </div>
 
         {/* Right Col: Why This Matters & Provenance Guide */}
-        <div className="bg-obsidian-750/90 border border-obsidian-600 rounded-xl p-5 space-y-4">
-          <div className="flex items-center gap-2 border-b border-obsidian-600 pb-3">
-            <Info className="w-4 h-4 text-madder-400" />
-            <h4 className="text-[11px] font-bold text-snow-500 uppercase tracking-wider">
+        <div className="bg-cyber-750/90 border border-cyber-600 rounded-xl p-5 space-y-4">
+          <div className="flex items-center gap-2 border-b border-cyber-600 pb-3">
+            <Info className="w-4 h-4 text-coolTeal-400" />
+            <h4 className="text-[11px] font-bold text-icy-500 uppercase tracking-wider">
               Parameter Provenance & Integrity
             </h4>
           </div>
 
-          <div className="space-y-3 text-xs text-snow-400">
+          <div className="space-y-3 text-xs text-icy-300">
             <div className="flex items-start gap-2.5">
               <span className="w-2 h-2 rounded-full bg-blue-400 shrink-0 mt-1.5" />
               <div>
-                <strong className="text-snow-100">User Stated:</strong> Values extracted verbatim from your prompt.
+                <strong className="text-icy-100">User Stated:</strong> Values extracted verbatim from your prompt.
               </div>
             </div>
             <div className="flex items-start gap-2.5">
               <span className="w-2 h-2 rounded-full bg-status-warning shrink-0 mt-1.5" />
               <div>
-                <strong className="text-snow-100">System Assumption:</strong> Proposed default requiring confirmation.
+                <strong className="text-icy-100">System Assumption:</strong> Proposed default requiring confirmation.
               </div>
             </div>
             <div className="flex items-start gap-2.5">
               <span className="w-2 h-2 rounded-full bg-status-success shrink-0 mt-1.5" />
               <div>
-                <strong className="text-snow-100">Clarified:</strong> Disambiguated through the clarification step.
+                <strong className="text-icy-100">Clarified:</strong> Disambiguated through the clarification step.
               </div>
             </div>
             <div className="flex items-start gap-2.5">
-              <span className="w-2 h-2 rounded-full bg-madder-500 shrink-0 mt-1.5" />
+              <span className="w-2 h-2 rounded-full bg-coolTeal-400 shrink-0 mt-1.5" />
               <div>
-                <strong className="text-snow-100">AI Inferred:</strong> Inferred from trading context and standard conventions.
+                <strong className="text-icy-100">AI Inferred:</strong> Inferred from trading context and standard conventions.
               </div>
             </div>
           </div>
 
-          <div className="pt-4 border-t border-obsidian-600">
+          <div className="pt-4 border-t border-cyber-600">
             <div className="flex items-center gap-1.5 text-xs text-status-warning font-semibold mb-1">
               <ShieldAlert className="w-3.5 h-3.5 text-status-warning" />
               <span>Auditable Research Guarantee</span>
             </div>
-            <p className="text-[11px] text-snow-500">
+            <p className="text-[11px] text-icy-500">
               Deterministic calculations are executed in TypeScript using the bundled calibrated sample dataset. Zero LLM hallucinations in metrics.
             </p>
           </div>
@@ -400,8 +400,8 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
       </div>
 
       {/* Action Footer */}
-      <div className="flex items-center justify-between pt-6 mt-6 border-t border-obsidian-600">
-        <span className="text-xs text-snow-500">
+      <div className="flex items-center justify-between pt-6 mt-6 border-t border-cyber-600">
+        <span className="text-xs text-icy-500">
           Status:{" "}
           <span className="font-semibold text-status-success uppercase tracking-wider">
             Ready For Sample Backtesting
@@ -410,9 +410,9 @@ export const ExperimentCard: React.FC<ExperimentCardProps> = ({
         <button
           type="button"
           onClick={onProceedToTest}
-          className="flex items-center gap-2 px-6 py-2.5 bg-madder-700 hover:bg-madder-600 text-snow-100 rounded-lg text-xs md:text-sm font-semibold shadow-madder-sm transition-all"
+          className="flex items-center gap-2 px-6 py-2.5 bg-coolTeal-500 hover:bg-coolTeal-400 text-cyber-950 font-bold rounded-lg text-xs md:text-sm shadow-teal-sm transition-all"
         >
-          <PlayCircle className="w-4 h-4" />
+          <PlayCircle className="w-4 h-4 text-cyber-950 font-bold" />
           <span>Execute Deterministic Test</span>
         </button>
       </div>

@@ -34,8 +34,8 @@ export const ProvenanceBadge: React.FC<ProvenanceBadgeProps> = ({
     },
     derived: {
       label: "AI Inferred",
-      bg: "bg-madder-950/70 border-madder-700/80 text-madder-300",
-      icon: <Cpu className="w-3 h-3 text-madder-400 mr-1 inline" />,
+      bg: "bg-coolTeal-950/70 border-coolTeal-500/60 text-coolTeal-300",
+      icon: <Cpu className="w-3 h-3 text-coolTeal-400 mr-1 inline" />,
       description: "Inferred from trading context and standard conventions",
     },
   }[source];

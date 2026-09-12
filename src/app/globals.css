@@ -4,17 +4,17 @@
 
 @layer base {
   :root {
-    --background: #0C0A0B;
-    --foreground: #FCF8F9;
-    --primary: #A21721;
-    --primary-hover: #C01E2A;
-    --primary-soft: rgba(162, 23, 33, 0.15);
-    --card: #181316;
-    --card-foreground: #FCF8F9;
-    --surface: #20191E;
-    --border: #3A2B33;
-    --border-strong: #4D3A44;
-    --ring: #A21721;
+    --background: #080E1A;
+    --foreground: #F1FAFE;
+    --primary: #0096C7;
+    --primary-hover: #00B4D8;
+    --primary-soft: rgba(0, 150, 199, 0.15);
+    --card: #101F35;
+    --card-foreground: #F1FAFE;
+    --surface: #162844;
+    --border: #26446E;
+    --border-strong: #365D93;
+    --ring: #0096C7;
   }
 
   body {
@@ -27,24 +27,24 @@
   }
 }
 
-/* Custom focus ring for accessibility */
+/* Custom focus ring for accessibility with Cool Teal glow */
 *:focus-visible {
-  outline: 2px solid #A21721;
+  outline: 2px solid #0096C7;
   outline-offset: 2px;
 }
 
-/* Custom dark scrollbar with subtle madder highlight */
+/* Custom cyber-slate scrollbar with futuristic cool teal highlight */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0C0A0B;
+  background: #080E1A;
 }
 ::-webkit-scrollbar-thumb {
-  background: #3A2B33;
+  background: #26446E;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #A21721;
+  background: #0096C7;
 }
