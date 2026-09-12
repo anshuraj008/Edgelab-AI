@@ -34,25 +34,22 @@ export const ResearchPrompt: React.FC<ResearchPromptProps> = ({
   };
 
   return (
-    <div className="relative bg-cyber-800 border border-cyber-600 rounded-xl p-6 md:p-8 shadow-card overflow-hidden">
-      {/* Futuristic Cool Teal Radial Glow */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-coolTeal-500/10 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="flex items-center gap-3.5 mb-4">
-        <div className="p-2.5 rounded-lg bg-coolTeal-500/15 border border-coolTeal-500/30 text-coolTeal-400 shadow-teal-sm">
-          <Sparkles className="w-5 h-5 text-coolTeal-400" />
+    <div className="bg-white border border-sand-300 rounded-xl p-6 shadow-card transition-all">
+      <div className="flex items-center gap-2 mb-3">
+        <div className="p-2 rounded-lg bg-cyprus-50 text-cyprus-700">
+          <Sparkles className="w-5 h-5" />
         </div>
         <div>
-          <h2 className="text-lg font-bold text-icy-100">
+          <h2 className="text-lg font-semibold text-slate-900">
             What market idea do you want to investigate?
           </h2>
-          <p className="text-xs text-icy-300">
-            Ask any natural language trading question. The assistant structures ambiguities, defines testable assumptions, and builds an auditable experiment.
+          <p className="text-xs text-slate-500">
+            Ask any natural language trading question. We will identify ambiguities, define assumptions, and construct a testable experiment.
           </p>
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="mt-5">
+      <form onSubmit={handleSubmit} className="mt-4">
         <div className="relative">
           <textarea
             value={query}
@@ -66,18 +63,18 @@ export const ResearchPrompt: React.FC<ResearchPromptProps> = ({
             placeholder="e.g. Does buying NIFTY after a sharp fall work over a 5-day holding period?"
             rows={3}
             disabled={isLoading}
-            className="w-full p-4 pr-14 text-sm md:text-base border border-cyber-600 rounded-xl bg-cyber-750 text-icy-100 focus:bg-cyber-750 focus:border-coolTeal-500 focus:ring-1 focus:ring-coolTeal-500 outline-none transition-all placeholder:text-icy-500 resize-none"
+            className="w-full p-4 pr-12 text-sm md:text-base border border-sand-300 rounded-lg bg-sand-50 focus:bg-white focus:border-cyprus-700 focus:ring-1 focus:ring-cyprus-700 outline-none transition-all placeholder:text-slate-400 resize-none"
           />
           <button
             type="submit"
             disabled={!query.trim() || isLoading}
             aria-label="Structure research question"
-            className="absolute bottom-3.5 right-3.5 p-3 rounded-lg bg-coolTeal-500 hover:bg-coolTeal-400 disabled:opacity-40 disabled:hover:bg-coolTeal-500 text-cyber-950 font-semibold transition-all shadow-teal-sm flex items-center justify-center"
+            className="absolute bottom-3.5 right-3.5 p-2.5 rounded-lg bg-cyprus-700 hover:bg-cyprus-800 disabled:opacity-40 disabled:hover:bg-cyprus-700 text-white transition-all shadow-sm flex items-center justify-center"
           >
             {isLoading ? (
-              <Loader2 className="w-4 h-4 animate-spin text-cyber-950" />
+              <Loader2 className="w-4 h-4 animate-spin" />
             ) : (
-              <ArrowRight className="w-4 h-4 text-cyber-950 font-bold" />
+              <ArrowRight className="w-4 h-4" />
             )}
           </button>
         </div>
@@ -85,28 +82,28 @@ export const ResearchPrompt: React.FC<ResearchPromptProps> = ({
         {isLoading && (
           <div
             aria-live="polite"
-            className="mt-3.5 flex items-center gap-2.5 text-xs font-medium text-coolTeal-300 bg-coolTeal-950/60 px-4 py-2.5 rounded-lg border border-coolTeal-500/40"
+            className="mt-3 flex items-center gap-2 text-xs font-medium text-cyprus-700 bg-cyprus-50 px-3 py-2 rounded-md border border-cyprus-200"
           >
-            <Loader2 className="w-4 h-4 animate-spin text-coolTeal-400" />
+            <Loader2 className="w-3.5 h-3.5 animate-spin" />
             <span>Structuring your idea into testable parameters and detecting missing assumptions...</span>
           </div>
         )}
       </form>
 
-      <div className="mt-6 pt-5 border-t border-cyber-600">
-        <span className="text-[11px] font-bold text-icy-500 uppercase tracking-wider block mb-3">
+      <div className="mt-5 pt-4 border-t border-sand-200">
+        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-2">
           Example Research Hypotheses
         </span>
-        <div className="flex flex-wrap gap-2.5">
+        <div className="flex flex-wrap gap-2">
           {EXAMPLE_QUERIES.map((example) => (
             <button
               key={example}
               type="button"
               disabled={isLoading}
               onClick={() => handleChipClick(example)}
-              className="text-xs bg-cyber-750 hover:bg-cyber-700 text-icy-300 hover:text-icy-100 border border-cyber-600 hover:border-coolTeal-500/60 px-3.5 py-2 rounded-lg transition-all text-left flex items-center gap-2 shadow-xs"
+              className="text-xs bg-sand-100 hover:bg-sand-200 text-slate-700 border border-sand-300 px-3 py-1.5 rounded-lg transition-colors text-left flex items-center gap-1.5"
             >
-              <Search className="w-3.5 h-3.5 text-icy-500" />
+              <Search className="w-3 h-3 text-slate-400" />
               <span>{example}</span>
             </button>
           ))}

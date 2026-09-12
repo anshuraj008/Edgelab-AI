@@ -4,17 +4,15 @@
 
 @layer base {
   :root {
-    --background: #080E1A;
-    --foreground: #F1FAFE;
-    --primary: #0096C7;
-    --primary-hover: #00B4D8;
-    --primary-soft: rgba(0, 150, 199, 0.15);
-    --card: #101F35;
-    --card-foreground: #F1FAFE;
-    --surface: #162844;
-    --border: #26446E;
-    --border-strong: #365D93;
-    --ring: #0096C7;
+    --background: #F5F2EA;
+    --foreground: #1E293B;
+    --primary: #004741;
+    --primary-foreground: #FFFFFF;
+    --card: #FFFFFF;
+    --card-foreground: #1E293B;
+    --border: #E5E0D8;
+    --input: #E5E0D8;
+    --ring: #004741;
   }
 
   body {
@@ -27,24 +25,24 @@
   }
 }
 
-/* Custom focus ring for accessibility with Cool Teal glow */
+/* Custom focus ring for accessibility */
 *:focus-visible {
-  outline: 2px solid #0096C7;
+  outline: 2px solid #004741;
   outline-offset: 2px;
 }
 
-/* Custom cyber-slate scrollbar with futuristic cool teal highlight */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #080E1A;
+  background: #F5F2EA;
 }
 ::-webkit-scrollbar-thumb {
-  background: #26446E;
+  background: #C8BEA8;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #0096C7;
+  background: #A89C83;
 }

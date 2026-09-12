@@ -28,7 +28,7 @@ export const StageStepper: React.FC<StageStepperProps> = ({
 
   return (
     <nav aria-label="Research workflow steps" className="w-full">
-      <div className="flex items-center justify-between border-b border-cyber-600 pb-3 overflow-x-auto gap-2">
+      <div className="flex items-center justify-between border-b border-sand-300 pb-4 overflow-x-auto gap-2">
         {STAGES.map((s, idx) => {
           const isActive = s.key === currentStage;
           const isCompleted = idx < currentIndex;
@@ -41,26 +41,26 @@ export const StageStepper: React.FC<StageStepperProps> = ({
               type="button"
               disabled={!isAccessible}
               onClick={() => isAccessible && onSelectStage(s.key)}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs md:text-sm font-medium transition-all whitespace-nowrap ${
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium transition-all whitespace-nowrap ${
                 isActive
-                  ? "bg-coolTeal-500 text-cyber-950 font-semibold shadow-teal-sm ring-1 ring-coolTeal-400"
+                  ? "bg-cyprus-700 text-white shadow-sm ring-1 ring-cyprus-800"
                   : isCompleted
-                  ? "bg-cyber-750 text-icy-100 hover:bg-cyber-700 border border-cyber-600"
+                  ? "bg-sand-200 text-cyprus-800 hover:bg-sand-300"
                   : isAccessible
-                  ? "bg-cyber-800 text-icy-300 hover:bg-cyber-750 border border-cyber-600"
-                  : "bg-transparent text-icy-500 opacity-40 cursor-not-allowed border border-transparent"
+                  ? "bg-white text-slate-700 hover:bg-sand-100 border border-sand-300"
+                  : "bg-transparent text-slate-400 cursor-not-allowed border border-transparent"
               }`}
             >
               <div
-                className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] ${
                   isActive
-                    ? "bg-cyber-950/30 text-cyber-950 font-bold"
+                    ? "bg-cyprus-800 text-white"
                     : isCompleted
-                    ? "bg-status-success/20 text-status-success border border-status-success/40"
-                    : "bg-cyber-700 text-icy-500"
+                    ? "bg-cyprus-600 text-white"
+                    : "bg-slate-200 text-slate-600"
                 }`}
               >
-                {isCompleted ? <Check className="w-3 h-3 text-status-success" /> : s.number}
+                {isCompleted ? <Check className="w-3 h-3" /> : s.number}
               </div>
               <span className="hidden sm:inline">{s.label.split(". ")[1]}</span>
               <span className="sm:hidden">{s.label}</span>

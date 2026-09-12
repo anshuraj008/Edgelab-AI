@@ -9,42 +9,36 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        coolTeal: {
-          50: "#E6F7FC",
-          100: "#CCEFF9",
-          200: "#99DFF3",
-          300: "#48CAE4",
-          400: "#00B4D8", // Energetic Hover Teal
-          500: "#0096C7", // Core Brand Cool Teal (#0096C7)
-          600: "#0077B6", // Deep Active Teal
-          700: "#023E8A",
-          800: "#03045E",
-          900: "#011A38",
-          950: "#010F20",
+        cyprus: {
+          50: "#e6f2f0",
+          100: "#cce5e1",
+          200: "#99cbc3",
+          300: "#66b1a5",
+          400: "#339787",
+          500: "#007d69",
+          600: "#006454",
+          700: "#004741", // Primary brand Cyprus
+          800: "#003632",
+          900: "#002421",
+          950: "#001211",
         },
-        icy: {
-          50: "#FFFFFF",
-          100: "#F1FAFE", // Crisp Icy White (#F1FAFE)
-          200: "#E1F2FA",
-          300: "#C5DBE8", // Secondary High-Contrast Slate
-          400: "#9CBAD2",
-          500: "#6B8EA8", // Muted Slate
-          600: "#4A6D88",
+        sand: {
+          50: "#FAF8F5",
+          100: "#F5F2EA", // App Canvas warm sand
+          200: "#EAE5D9",
+          300: "#DDD6C5",
+          400: "#C8BEA8",
+          500: "#A89C83",
+          600: "#877B63",
+          700: "#665C47",
+          800: "#473F30",
+          900: "#2B261C",
         },
-        cyber: {
-          950: "#040810", // Deepest Cyber Void
-          900: "#080E1A", // App Background
-          850: "#0C1626", // Nav / Header / Footer
-          800: "#101F35", // Card Background
-          750: "#162844", // Elevated Surface / Input
-          700: "#1D3456",
-          600: "#26446E", // Hairline Border
-          500: "#365D93", // Strong Border
-        },
-        status: {
-          success: "#10B981",
-          warning: "#F59E0B",
-          error: "#EF4444",
+        provenance: {
+          user: "#1D4ED8", // Blue
+          assumption: "#B45309", // Amber
+          clarified: "#047857", // Emerald
+          derived: "#6D28D9", // Purple
         },
       },
       fontFamily: {
@@ -52,10 +46,9 @@ const config: Config = {
         mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       boxShadow: {
-        card: "0 1px 4px 0 rgba(0, 0, 0, 0.5), 0 1px 2px -1px rgba(0, 0, 0, 0.4)",
-        "card-hover": "0 8px 24px -4px rgba(0, 0, 0, 0.7), 0 2px 8px -2px rgba(0, 150, 199, 0.3)",
-        "teal-glow": "0 0 28px -4px rgba(0, 150, 199, 0.55)",
-        "teal-sm": "0 0 14px -2px rgba(0, 150, 199, 0.4)",
+        card: "0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05)",
+        "card-hover": "0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05)",
+        "workbench": "0 10px 25px -5px rgba(0, 71, 65, 0.06), 0 8px 10px -6px rgba(0, 71, 65, 0.04)",
       },
     },
   },

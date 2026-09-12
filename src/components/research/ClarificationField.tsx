@@ -27,28 +27,28 @@ export const ClarificationField: React.FC<ClarificationFieldProps> = ({
   };
 
   return (
-    <div className="bg-cyber-750 border border-cyber-600 rounded-xl p-4 md:p-5 transition-all hover:border-cyber-500">
-      <div className="flex items-start justify-between gap-2 mb-2.5">
+    <div className="bg-sand-50 border border-sand-300 rounded-lg p-4 transition-all hover:border-sand-400">
+      <div className="flex items-start justify-between gap-2 mb-2">
         <label
           htmlFor={`clarify_${field.key}`}
-          className="text-sm font-semibold text-icy-100"
+          className="text-sm font-semibold text-slate-800"
         >
           {field.question}
         </label>
-        <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-status-warning/15 text-status-warning border border-status-warning/30">
-          Required
+        <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300">
+          Required Parameter
         </span>
       </div>
 
-      <div className="flex items-center gap-2 text-xs text-icy-300 mb-3.5 bg-cyber-800/80 p-2.5 rounded-lg border border-cyber-600">
-        <HelpCircle className="w-4 h-4 text-coolTeal-400 shrink-0" />
+      <div className="flex items-center gap-1.5 text-xs text-slate-600 mb-3 bg-white p-2 rounded border border-sand-200">
+        <HelpCircle className="w-3.5 h-3.5 text-cyprus-700 shrink-0" />
         <span>
-          <strong className="text-icy-100">Why it matters:</strong> {field.whyImportant}
+          <strong className="text-slate-700">Why it matters:</strong> {field.whyImportant}
         </span>
       </div>
 
       {field.options && field.options.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-3.5">
+        <div className="flex flex-wrap gap-2 mb-3">
           {field.options.map((opt) => {
             const isSelected =
               String(displayValue) === String(opt.value) ||
@@ -59,10 +59,10 @@ export const ClarificationField: React.FC<ClarificationFieldProps> = ({
                 key={String(opt.value)}
                 type="button"
                 onClick={() => onChange(opt.value)}
-                className={`text-xs px-3.5 py-1.5 rounded-lg font-semibold border transition-all ${
+                className={`text-xs px-3 py-1.5 rounded-md font-medium border transition-all ${
                   isSelected
-                    ? "bg-coolTeal-500 text-cyber-950 border-coolTeal-400 shadow-teal-sm"
-                    : "bg-cyber-800 text-icy-300 border-cyber-600 hover:bg-cyber-700 hover:text-icy-100"
+                    ? "bg-cyprus-700 text-white border-cyprus-800 shadow-xs"
+                    : "bg-white text-slate-700 border-sand-300 hover:bg-sand-100"
                 }`}
               >
                 {opt.label}
@@ -82,10 +82,10 @@ export const ClarificationField: React.FC<ClarificationFieldProps> = ({
             value={displayValue}
             onChange={handleInputChange}
             placeholder={`e.g. ${isEntryDrop ? Math.abs(Number(field.suggestedValue)) : field.suggestedValue}`}
-            className="w-full text-xs md:text-sm px-3.5 py-2.5 pr-16 bg-cyber-800 text-icy-100 border border-cyber-600 rounded-lg focus:border-coolTeal-500 focus:ring-1 focus:ring-coolTeal-500 outline-none transition-colors"
+            className="w-full text-xs md:text-sm px-3 py-2 pr-16 bg-white border border-sand-300 rounded-md focus:border-cyprus-700 focus:ring-1 focus:ring-cyprus-700 outline-none"
           />
           {isEntryDrop && (
-            <span className="absolute right-3.5 top-2.5 text-xs text-icy-500 font-medium pointer-events-none">
+            <span className="absolute right-3 top-2 text-xs text-slate-500 font-medium pointer-events-none">
               % drop
             </span>
           )}
