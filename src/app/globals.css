@@ -4,17 +4,17 @@
 
 @layer base {
   :root {
-    --background: #0A0F23;
-    --foreground: #F8F9FC;
-    --primary: #7E3BED;
-    --primary-hover: #8D55F5;
-    --primary-soft: rgba(126, 59, 237, 0.1);
-    --card: #11182E;
-    --card-foreground: #F8F9FC;
-    --surface: #151D36;
-    --border: #232D48;
-    --border-strong: #34405F;
-    --ring: #7E3BED;
+    --background: #0C0A0B;
+    --foreground: #FCF8F9;
+    --primary: #A21721;
+    --primary-hover: #C01E2A;
+    --primary-soft: rgba(162, 23, 33, 0.15);
+    --card: #181316;
+    --card-foreground: #FCF8F9;
+    --surface: #20191E;
+    --border: #3A2B33;
+    --border-strong: #4D3A44;
+    --ring: #A21721;
   }
 
   body {
@@ -29,22 +29,22 @@
 
 /* Custom focus ring for accessibility */
 *:focus-visible {
-  outline: 2px solid #7E3BED;
+  outline: 2px solid #A21721;
   outline-offset: 2px;
 }
 
-/* Custom dark scrollbar */
+/* Custom dark scrollbar with subtle madder highlight */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0A0F23;
+  background: #0C0A0B;
 }
 ::-webkit-scrollbar-thumb {
-  background: #232D48;
+  background: #3A2B33;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #34405F;
+  background: #A21721;
 }

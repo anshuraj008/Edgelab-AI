@@ -27,11 +27,11 @@ export const ClarificationField: React.FC<ClarificationFieldProps> = ({
   };
 
   return (
-    <div className="bg-midnight-750 border border-midnight-600 rounded-xl p-4 md:p-5 transition-all hover:border-midnight-500">
+    <div className="bg-obsidian-750 border border-obsidian-600 rounded-xl p-4 md:p-5 transition-all hover:border-obsidian-500">
       <div className="flex items-start justify-between gap-2 mb-2.5">
         <label
           htmlFor={`clarify_${field.key}`}
-          className="text-sm font-semibold text-slate-textPrimary"
+          className="text-sm font-semibold text-snow-100"
         >
           {field.question}
         </label>
@@ -40,10 +40,10 @@ export const ClarificationField: React.FC<ClarificationFieldProps> = ({
         </span>
       </div>
 
-      <div className="flex items-center gap-2 text-xs text-slate-textSecondary mb-3.5 bg-midnight-800/80 p-2.5 rounded-lg border border-midnight-600">
-        <HelpCircle className="w-4 h-4 text-violet-hover shrink-0" />
+      <div className="flex items-center gap-2 text-xs text-snow-400 mb-3.5 bg-obsidian-800/80 p-2.5 rounded-lg border border-obsidian-600">
+        <HelpCircle className="w-4 h-4 text-madder-400 shrink-0" />
         <span>
-          <strong className="text-slate-textPrimary">Why it matters:</strong> {field.whyImportant}
+          <strong className="text-snow-100">Why it matters:</strong> {field.whyImportant}
         </span>
       </div>
 
@@ -61,8 +61,8 @@ export const ClarificationField: React.FC<ClarificationFieldProps> = ({
                 onClick={() => onChange(opt.value)}
                 className={`text-xs px-3.5 py-1.5 rounded-lg font-medium border transition-all ${
                   isSelected
-                    ? "bg-violet-accent text-white border-violet-hover shadow-violet-sm"
-                    : "bg-midnight-800 text-slate-textSecondary border-midnight-600 hover:bg-midnight-700 hover:text-slate-textPrimary"
+                    ? "bg-madder-700 text-snow-100 border-madder-600 shadow-madder-sm"
+                    : "bg-obsidian-800 text-snow-400 border-obsidian-600 hover:bg-obsidian-700 hover:text-snow-100"
                 }`}
               >
                 {opt.label}
@@ -82,10 +82,10 @@ export const ClarificationField: React.FC<ClarificationFieldProps> = ({
             value={displayValue}
             onChange={handleInputChange}
             placeholder={`e.g. ${isEntryDrop ? Math.abs(Number(field.suggestedValue)) : field.suggestedValue}`}
-            className="w-full text-xs md:text-sm px-3.5 py-2.5 pr-16 bg-midnight-800 text-slate-textPrimary border border-midnight-600 rounded-lg focus:border-violet-accent focus:ring-1 focus:ring-violet-accent outline-none transition-colors"
+            className="w-full text-xs md:text-sm px-3.5 py-2.5 pr-16 bg-obsidian-800 text-snow-100 border border-obsidian-600 rounded-lg focus:border-madder-700 focus:ring-1 focus:ring-madder-700 outline-none transition-colors"
           />
           {isEntryDrop && (
-            <span className="absolute right-3.5 top-2.5 text-xs text-slate-textMuted font-medium pointer-events-none">
+            <span className="absolute right-3.5 top-2.5 text-xs text-snow-500 font-medium pointer-events-none">
               % drop
             </span>
           )}

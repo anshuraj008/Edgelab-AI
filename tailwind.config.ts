@@ -9,31 +9,42 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        midnight: {
-          950: "#070B1A",
-          900: "#0A0F23", // App background
-          850: "#0D1328", // Sidebar / header / footer
-          800: "#11182E", // Card background
-          750: "#151D36", // Elevated surface / input
-          700: "#1C2646",
-          600: "#232D48", // Border
-          500: "#34405F", // Strong border
+        madder: {
+          50: "#FDF2F3",
+          100: "#FCE6E8",
+          200: "#F9B3B8",
+          300: "#F58089",
+          400: "#EE4D5A",
+          500: "#E62E3B",
+          600: "#C01E2A", // Hover Madder
+          700: "#A21721", // Core Brand Madder
+          800: "#7F1018",
+          900: "#5A0B10",
+          950: "#380509",
         },
-        violet: {
-          accent: "#7E3BED", // Primary accent
-          hover: "#8D55F5",  // Accent hover
-          soft: "#7E3BED1A", // Accent soft (10% opacity)
-          glow: "#7E3BED33", // Accent glow (20% opacity)
+        snow: {
+          DEFAULT: "#FCF8F9",
+          50: "#FFFFFF",
+          100: "#FCF8F9", // Crisp Snow Text
+          200: "#F4EAEF",
+          300: "#E8D8E0",
+          400: "#C9BFC4", // Secondary Text
+          500: "#8E8087", // Muted Text
         },
-        slate: {
-          textPrimary: "#F8F9FC",   // Primary text
-          textSecondary: "#A7AFC3", // Secondary text
-          textMuted: "#737D96",     // Muted text
+        obsidian: {
+          950: "#080607",
+          900: "#0C0A0B", // App background
+          850: "#120E10", // Header / Nav
+          800: "#181316", // Card background
+          750: "#20191E", // Elevated surface / input
+          700: "#2B2026",
+          600: "#3A2B33", // Hairline border
+          500: "#4D3A44", // Strong border
         },
         status: {
-          success: "#21D69B", // Mint / emerald
-          warning: "#F4B740", // Amber / gold
-          error: "#F05D68",   // Soft red / crimson
+          success: "#21D69B",
+          warning: "#E5A93C",
+          error: "#F05D68",
         },
       },
       fontFamily: {
@@ -41,10 +52,10 @@ const config: Config = {
         mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       boxShadow: {
-        card: "0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.2)",
-        "card-hover": "0 4px 12px -2px rgba(0, 0, 0, 0.4), 0 2px 6px -2px rgba(126, 59, 237, 0.15)",
-        "violet-glow": "0 0 25px -5px rgba(126, 59, 237, 0.35)",
-        "violet-sm": "0 0 12px -2px rgba(126, 59, 237, 0.25)",
+        card: "0 1px 4px 0 rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.3)",
+        "card-hover": "0 8px 24px -4px rgba(0, 0, 0, 0.6), 0 2px 8px -2px rgba(162, 23, 33, 0.2)",
+        "madder-glow": "0 0 25px -4px rgba(162, 23, 33, 0.45)",
+        "madder-sm": "0 0 14px -2px rgba(162, 23, 33, 0.35)",
       },
     },
   },

@@ -246,22 +246,22 @@ export const ResearchWorkbench: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-midnight-900 text-slate-textPrimary flex flex-col selection:bg-violet-accent selection:text-white">
+    <div className="min-h-screen bg-obsidian-900 text-snow-100 flex flex-col selection:bg-madder-700 selection:text-snow-100">
       {/* Top Header */}
-      <header className="bg-midnight-850/90 backdrop-blur-md text-white border-b border-midnight-600 shadow-sm sticky top-0 z-30">
+      <header className="bg-obsidian-850/90 backdrop-blur-md text-snow-100 border-b border-obsidian-600 shadow-sm sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3.5">
-            <div className="w-8 h-8 rounded-lg bg-violet-accent/15 flex items-center justify-center border border-violet-accent/30 shadow-violet-sm">
-              <Sparkles className="w-4 h-4 text-violet-hover" />
+            <div className="w-8 h-8 rounded-lg bg-madder-700/15 flex items-center justify-center border border-madder-700/30 shadow-madder-sm">
+              <Sparkles className="w-4 h-4 text-madder-400" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-base font-bold tracking-tight text-white">EdgeLab AI</h1>
-                <span className="text-[10px] bg-violet-soft text-violet-hover px-2 py-0.5 rounded border border-violet-accent/30 font-mono">
+                <h1 className="text-base font-bold tracking-tight text-snow-100">EdgeLab AI</h1>
+                <span className="text-[10px] bg-madder-700/15 text-madder-300 px-2 py-0.5 rounded border border-madder-700/30 font-mono">
                   Research Workbench
                 </span>
               </div>
-              <p className="text-[11px] text-slate-textSecondary hidden sm:block">
+              <p className="text-[11px] text-snow-400 hidden sm:block">
                 From market question to transparent evidence.
               </p>
             </div>
@@ -269,15 +269,15 @@ export const ResearchWorkbench: React.FC = () => {
 
           <div className="flex items-center gap-3">
             {state.history.length > 0 && (
-              <div className="hidden md:flex items-center gap-1.5 text-xs text-slate-textSecondary">
-                <History className="w-3.5 h-3.5 text-slate-textMuted" />
+              <div className="hidden md:flex items-center gap-1.5 text-xs text-snow-400">
+                <History className="w-3.5 h-3.5 text-snow-500" />
                 <span>{state.history.length} session{state.history.length > 1 ? "s" : ""}</span>
               </div>
             )}
             <button
               type="button"
               onClick={() => dispatch({ type: "RESET_WORKFLOW" })}
-              className="text-xs bg-midnight-750 hover:bg-midnight-700 text-slate-textPrimary px-3.5 py-1.5 rounded-lg border border-midnight-600 transition-colors shadow-xs"
+              className="text-xs bg-obsidian-750 hover:bg-obsidian-700 text-snow-100 px-3.5 py-1.5 rounded-lg border border-obsidian-600 transition-colors shadow-xs"
             >
               New Query
             </button>
@@ -288,7 +288,7 @@ export const ResearchWorkbench: React.FC = () => {
       {/* Main Content Area */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 flex-1 w-full space-y-6">
         {/* Stage Progress Stepper */}
-        <div className="bg-midnight-800 border border-midnight-600 rounded-xl p-4 md:p-5 shadow-card">
+        <div className="bg-obsidian-800 border border-obsidian-600 rounded-xl p-4 md:p-5 shadow-card">
           <StageStepper
             currentStage={state.stage}
             onSelectStage={(st) => dispatch({ type: "SET_STAGE", payload: st })}
@@ -377,12 +377,12 @@ export const ResearchWorkbench: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-midnight-600 bg-midnight-850/80 py-5 mt-auto">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-textMuted">
+      <footer className="border-t border-obsidian-600 bg-obsidian-850/80 py-5 mt-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-snow-500">
           <div>
-            <strong className="text-slate-textSecondary">EdgeLab AI Selection Assignment</strong> — Transparent Ambiguity & Deterministic Research.
+            <strong className="text-snow-400">EdgeLab AI Selection Assignment</strong> — Transparent Ambiguity & Deterministic Research.
           </div>
-          <div className="flex items-center gap-3 text-[11px] text-slate-textMuted font-mono">
+          <div className="flex items-center gap-3 text-[11px] text-snow-500 font-mono">
             <span>Next.js App Router</span>
             <span>&bull;</span>
             <span>Google Gemini</span>
