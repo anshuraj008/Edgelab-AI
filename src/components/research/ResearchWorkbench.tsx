@@ -16,6 +16,7 @@ import { TestPanel } from "./TestPanel";
 import { ResultSummary } from "./ResultSummary";
 import { EvidenceVsConclusion } from "./EvidenceVsConclusion";
 import { NextQuestions } from "./NextQuestions";
+import { EdgeLabLogo } from "@/components/brand/EdgeLabLogo";
 import { mergeClarificationAnswers } from "@/lib/ai/clarification-merger";
 import { AlertCircle, History, Sparkles, BookOpen } from "lucide-react";
 
@@ -251,20 +252,7 @@ export const ResearchWorkbench: React.FC = () => {
       <header className="bg-cyprus-950 text-white border-b border-cyprus-800 shadow-sm sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-cyprus-900 flex items-center justify-center border border-cyprus-700 shadow-xs">
-              <Sparkles className="w-4 h-4 text-cyprus-400" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-base font-bold tracking-tight text-white">EdgeLab AI</h1>
-                <span className="text-[10px] bg-cyprus-900 text-cyprus-400 px-2 py-0.5 rounded border border-cyprus-700 font-mono">
-                  Research Workbench
-                </span>
-              </div>
-              <p className="text-[11px] text-cyprus-200 hidden sm:block">
-                From market question to transparent evidence.
-              </p>
-            </div>
+            <EdgeLabLogo size="md" showText={true} />
           </div>
 
           <div className="flex items-center gap-3">
@@ -277,7 +265,7 @@ export const ResearchWorkbench: React.FC = () => {
             <button
               type="button"
               onClick={() => dispatch({ type: "RESET_WORKFLOW" })}
-              className="text-xs bg-cyprus-900 hover:bg-cyprus-800 text-cyprus-100 px-3 py-1.5 rounded-md border border-cyprus-700 transition-colors"
+              className="text-xs bg-cyprus-900 hover:bg-cyprus-800 text-cyprus-100 px-3.5 py-1.5 rounded-lg border border-cyprus-700 transition-colors shadow-xs font-medium"
             >
               New Query
             </button>
@@ -287,8 +275,23 @@ export const ResearchWorkbench: React.FC = () => {
 
       {/* Main Content Area */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full space-y-6">
-        {/* Stage Progress Stepper */}
-        <div className="bg-white border border-sand-300 rounded-xl p-4 shadow-xs">
+        {/* Stage Progress Stepper with Workbench Header */}
+        <div className="bg-white border border-sand-300 rounded-xl p-4 md:p-5 shadow-card space-y-3.5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-sand-200 pb-3">
+            <div className="flex items-center gap-2.5">
+              <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-cyprus-50 text-cyprus-800 border border-cyprus-200 font-mono">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyprus-400" />
+                Research Workbench
+              </span>
+              <p className="text-xs font-medium text-slate-600">
+                From market question to transparent evidence.
+              </p>
+            </div>
+            <span className="text-[11px] text-slate-400 font-mono hidden md:block">
+              5-Stage Structured Research Workflow
+            </span>
+          </div>
+
           <StageStepper
             currentStage={state.stage}
             onSelectStage={(st) => dispatch({ type: "SET_STAGE", payload: st })}

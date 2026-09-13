@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Search, Sparkles, ArrowRight, Loader2 } from "lucide-react";
+import { EdgeLabLogo } from "@/components/brand/EdgeLabLogo";
 
 interface ResearchPromptProps {
   initialQuery?: string;
@@ -35,10 +36,8 @@ export const ResearchPrompt: React.FC<ResearchPromptProps> = ({
 
   return (
     <div className="bg-white border border-sand-300 rounded-xl p-6 shadow-card transition-all">
-      <div className="flex items-center gap-2 mb-3">
-        <div className="p-2 rounded-lg bg-cyprus-50 text-cyprus-700">
-          <Sparkles className="w-5 h-5" />
-        </div>
+      <div className="flex items-center gap-3 mb-3">
+        <EdgeLabLogo size="md" showText={false} />
         <div>
           <h2 className="text-lg font-semibold text-slate-900">
             What market idea do you want to investigate?
